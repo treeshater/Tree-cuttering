@@ -7,7 +7,7 @@ let treeAutomatorPrice = 50
 let totaltrees = 0
 
 function Treecut() {
-    if (treeAutomator = false) {
+    if (treeAutomator === false) {
     trees = trees + treeGain
     totaltrees = totaltrees + treeGain
     document.getElementById('IDd').innerHTML = trees + " logs"
@@ -24,7 +24,7 @@ function Treecut() {
 
 function BuyAutomator() {
     if (trees >= treeAutomatorPrice) 
-        { if (treeAutomator = false)
+        { if (treeAutomator === false)
              {
                 treeAutomator = true
                 treeAutomatorPrice = treeAutomatorPrice * 2.5
