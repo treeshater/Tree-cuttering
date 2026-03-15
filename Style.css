@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(12, 12, 12);
+
+}
+
+* {
+    font-family: sans-serif;
+}
+
+button {
+    background-color: green;
+    color: rgb(66, 37, 26);
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    -webkit-text-fill-color: white;
+}
+
+p.Counters {
+    -webkit-text-fill-color: white;
+   size: var(100);
+    text-align: center;
+    
+}
