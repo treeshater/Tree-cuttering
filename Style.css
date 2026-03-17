@@ -40,6 +40,7 @@ button.purchaser {
     background-color: gray;
     border: 5px;
     border-color: white;
+    color: black;
     cursor: pointer;
     text-align: center;
 }
