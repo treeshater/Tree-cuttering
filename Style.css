@@ -7,9 +7,40 @@ body {
     font-family: sans-serif;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: rgb(37, 37, 37);
+}
+
+li a{
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: white;
+    color: black;
+}
 button {
     background-color: green;
+    border: 3px;
+    border-color: white;
+    padding: 15px 32px;
     color: rgb(66, 37, 26);
+    align-self: center;
+    cursor: pointer;
+}
+
+button.purchaser {
+    background-color: gray;
+    border: 5px;
+    border-color: white;
+    cursor: pointer;
     text-align: center;
 }
 
