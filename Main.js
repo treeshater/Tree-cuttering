@@ -41,6 +41,7 @@ function buyCutter() {
         treeCutters = treeCutters.add(1)
         treeCutterPrice = treeCutterPrice.mul(1.35)
         document.getElementById('IDd').innerHTML = trees.toFixed(2) + " logs"
+        document.getElementById('tipTextCutter').innerHTML = treeCutterPrice.toFixed(2) + " logs"
     }
 }
 
@@ -51,13 +52,17 @@ function BuyAutomator() {
                 treeAutomator = true
                 trees = trees.sub(treeAutomatorPrice)
                 document.getElementById('IDd').innerHTML = trees.toFixed(2) + " logs"
-                treeAutomatorPrice = treeAutomatorPrice.mul(2.5)
+                 treeAutomatorPrice = treeAutomatorPrice.mul(2.5)
+                document.getElementById('tipTextAutomator').innerHTML = treeAutomatorPrice.toFixed(2) + " logs"
+               
                 check()
               }
               else { treeAutomatorEffeciency = treeAutomatorEffeciency / 1.1
                    trees = trees.sub(treeAutomatorPrice)
                    document.getElementById('IDd').innerHTML = trees.toFixed(2) + " logs"
                    treeAutomatorPrice = treeAutomatorPrice.mul(2.5)
+                   document.getElementById('tipTextAutomator').innerHTML = treeAutomatorPrice.toFixed(2) + " logs"
+                   
               }
                
     }
@@ -76,6 +81,9 @@ function BuyBurner() {
         BurnerCost = BurnerCost.mul(1.75)
         burnerEffect = burnerEffect.mul(1.25)
         document.getElementById('IDd').innerHTML = trees.toFixed(2) + " logs"
+        document.getElementById('tipTextBurner').innerHTML = BurnerCost.toFixed(2) + " logs"
+        
+
 
     }
 }
