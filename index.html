@@ -7,24 +7,34 @@
    <link rel="icon" type="icon" href="Images/icon.png">
    <title>Tree cutterin'
    </title>
-   <script src="Technical/OmegaNum.js"></script>
+
    
    
 
 </head>
-
+<script src="Technical/break_eternity.js"></script>
 
 <body>
-   <button onclick="Treecut()">Cut down a Tree</button>
-   <button class="purchaser" onclick="BuyAutomator()"> Automate the trees <span class="tooltiptext" id="tipTextAutomator">Cost: 50 Logs</span> </button>
+ <div class="Resource">   
+    <p class="Counters" id="IDd">0 log</p>
+    <p class="PrestigeFlame" id="flamesCounter">0 flames</p>
+</div>
+   <div class="tabs">     
+   <ul>
+   <li><a href="">Main</a> </li>
+   <li><a href="" class="flame"> Flames </a></li>
+   <li><a href="" class="solar"> Solar </a></li>
+   <li> <a href="">Settings</a> </li>
+   </ul>
+</div>
+   <div class="Mainupgrades"> <button onclick="Treecut()">Cut down a Tree</button>  <button class="purchaser" onclick="BuyAutomator()"> Automate the trees <span class="tooltiptext" id="tipTextAutomator">Cost: 50 Logs</span> </button>
    <button class="purchaser" onclick="buyCutter()"> Buy a cutter <span class="tooltiptext" id="tipTextCutter">Cost: 5 Logs</span></button>
    <button class="purchaser" onclick="BuyBurner()"> Buy a burner <span class="tooltiptext" id="tipTextBurner">Cost: 25 Logs</span></button>
-   <p class="Counters" id="IDd">0 log</p>
+   <button id="flames" class="prestigeFlames" onclick="flameSac()"> Sacrifice all your logs for 0 flames <span class="tooltiptext" id="tipTextflames">Requires 1000 logs to Sacrifice</span></button></div>
 
-    <ul>
-      <li><a href="">Main</a> </li>
-      <li> <a href="">Settings</a> </li>
-   </ul>
-<script src="Main.js"> </script>
+
+<script src="js/Main.js"> </script>
+<script src="js/Flames.js"></script>
+
 </body>
 </html>

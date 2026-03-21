@@ -1,3 +1,4 @@
+
 body {
     background-color: rgb(12, 12, 12);
 
@@ -63,6 +64,15 @@ button.purchaser:hover .tooltiptext {
     visibility: visible;
 }
 
+button.prestigeFlames {
+    background-color: red;
+    color: rgb(53, 0, 0);
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+
+}
+
 h1 {
     text-align: center;
     -webkit-text-fill-color: white;
@@ -71,6 +81,52 @@ h1 {
 p.Counters {
     -webkit-text-fill-color: white;
    size: var(100);
-    text-align: center;
+    text-align: right;
     
+}
+
+p.PrestigeFlame {
+    -webkit-text-fill-color: red;
+    text-align: right;
+}
+
+div.Resource {
+    height: auto;
+    float: right;
+    background-color: rgb(10, 10, 10);
+    width: 200px;
+    border-left:  4px solid white;
+    height: 100vh;
+}
+
+div.Mainupgrades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.tabs {
+    display: flex;
+    float: left;
+    width: 200px;
+    height: 100vh;
+}  
+
+a.flame {
+    color: red;
+
+}
+a.flame:hover {
+    color: black;
+    background-color: red;
+}  
+
+a.solar {
+    color: yellow;
+    visibility: hidden;
+} 
+
+a.solar:hover {
+    color: black;
+    background-color: yellow;
 }
