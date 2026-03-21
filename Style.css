@@ -61,10 +61,6 @@ button.purchaser {
     position: relative;
 }
 
-button.purchaser:hover .tooltiptext {
-    visibility: visible;
-}
-
 button.prestigeFlames {
     background-color: red;
     color: rgb(53, 0, 0);
@@ -153,4 +149,8 @@ a.solar {
 a.solar:hover {
     color: black;
     background-color: yellow;
+}
+
+p.effect {
+    color: white;
 }

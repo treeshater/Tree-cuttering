@@ -28,10 +28,12 @@
          <li> <a href="">Settings</a> </li>
          </ul>
       </div>
-      <div class="Mainupgrades"> <button class="treecutter" onclick="Treecut()">Cut down a Tree</button>  <button class="purchaser" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 50 logs<span class="tooltiptext" id="Automatoreffect">Cuts down one tree per 0.1 Second</span></button>
-         <button class="purchaser" onclick="buyCutter()"> Buy a cutter, cost: 5 logs <span class="tooltiptext" id="Cuttereffect">Get 0.1 more logs per tree</span></button>
-         <button class="purchaser" onclick="BuyBurner()"> Buy a burner, cost: 25 logs <span class="tooltiptext" id="BurnerEffect">Multiplies the logs gained by 1.3</span></button>
-         <button id="flames" class="prestigeFlames" onclick="flameSac()"> Sacrifice all your logs for 0 flames <span class="tooltiptext" id="tipTextflames">Requires 1000 logs to Sacrifice</span></button>
+      <div class="Mainupgrades"> 
+         <button class="treecutter" onclick="Treecut()">Cut down a Tree</button>
+         <button class="purchaser" id="automatorbutton" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 50 logs, Effect: cuts down a tree every 0.1 second.</button>
+         <button class="purchaser" id="cutterbutton" onclick="buyCutter()"> Buy a cutter, cost: 5 logs, Effect: Get 0 more logs per tree</button>
+         <button class="purchaser" id="burnerbutton" onclick="BuyBurner()"> Buy a burner, cost: 25 logs, Effect: Get 1 times more logs</button>
+         <button id="flames" class="prestigeFlames" onclick="flameSac()"> Sacrifice all your logs for 0 flames</button>
          </div>
     </div>
 

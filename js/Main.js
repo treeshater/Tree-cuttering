@@ -52,7 +52,7 @@ function buyCutter() {
         gamedata.treeCutters = gamedata.treeCutters.add(1)
         gamedata.treeCutterPrice = gamedata.treeCutterPrice.mul(1.35)
         document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
-        document.getElementById('tipTextCutter').innerHTML = gamedata.treeCutterPrice.toFixed(2) + " logs"
+        document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + gamedata.treeCutterPrice.toFixed(2) + " logs, " + " Effect: Get " + gamedata.treeCutters.div(10).toFixed(2) + " logs per tree"
     }
 }
 
@@ -64,7 +64,7 @@ function BuyAutomator() {
                 gamedata.trees = gamedata.trees.sub(gamedata.treeAutomatorPrice)
                 document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
                 gamedata.treeAutomatorPrice = gamedata.treeAutomatorPrice.mul(2.5)
-                document.getElementById('tipTextAutomator').innerHTML = gamedata.treeAutomatorPrice.toFixed(2) + " logs"
+                document.getElementById('automatorbutton').innerHTML = "Make the automator faster, cost: " + gamedata.treeAutomatorPrice.toFixed(2) + " logs, " + " Effect: Cut 1 tree every " + (gamedata.treeAutomatorEffeciency / 1000).toFixed(2) + " seconds"
                
                 check()
               }
@@ -72,7 +72,7 @@ function BuyAutomator() {
                    gamedata.trees = gamedata.trees.sub(gamedata.treeAutomatorPrice)
                    document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
                    gamedata.treeAutomatorPrice = gamedata.treeAutomatorPrice.mul(2.5)
-                   document.getElementById('tipTextAutomator').innerHTML = gamedata.treeAutomatorPrice.toFixed(2) + " logs"
+                   document.getElementById('automatorbutton').innerHTML = "Make the automator faster, cost: " + gamedata.treeAutomatorPrice.toFixed(2) + " logs, " + " Effect: Cut 1 tree every " + (gamedata.treeAutomatorEffeciency / 100).toFixed(2) + " seconds"
                    
               }
                
@@ -90,12 +90,11 @@ function BuyBurner() {
         gamedata.BurnerCost = gamedata.BurnerCost.mul(1.75)
         gamedata.burnerEffect = gamedata.burnerEffect.mul(1.25)
         document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
-        document.getElementById('tipTextBurner').innerHTML = gamedata.BurnerCost.toFixed(2) + " logs"
+        document.getElementById('burnerbutton').innerHTML = "Buy a burner, cost: " + gamedata.BurnerCost.toFixed(2) + " logs, " + "Effect: Get " + gamedata.burnerEffect.toFixed(2) + " times more logs "
         
 
 
     }
 }
-
 
 
