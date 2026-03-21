@@ -15,7 +15,7 @@ function flameFormula() {
 
 function flameSac() {
     flameFormula()
-    if (gamedata.trees >= gamedata.Flames.flameThreshold) {
+    if (gamedata.trees.gte(gamedata.Flames.flameThreshold)) {
         gamedata.Flames.flames = gamedata.Flames.flames.add(x)
         document.getElementById('flamesCounter').innerHTML = gamedata.Flames.flames + " Flames"
     }
