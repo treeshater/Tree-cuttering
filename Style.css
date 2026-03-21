@@ -4,6 +4,10 @@ body {
 
 }
 
+body.Main {
+    visibility: visible;
+} 
+
 * {
     font-family: sans-serif;
 }
@@ -21,20 +25,17 @@ li a{
     color: white;
     padding: 8px 16px;
     text-decoration: none;
+        border: 3px solid white;
 }
 
 li a:hover {
     background-color: white;
     color: black;
 }
-button {
-    background-color: green;
-    border: 3px;
-    border-color: white;
-    padding: 15px 32px;
-    color: rgb(66, 37, 26);
-    align-self: center;
-    cursor: pointer;
+
+li.active {
+    background-color: white;
+    color: black;
 }
 
 .tooltiptext {
@@ -53,8 +54,8 @@ button {
 
 button.purchaser {
     background-color: gray;
-    border: 5px;
-    border-color: white;
+    color: white;
+    border: 1px solid white;
     cursor: pointer;
     text-align: center;
     position: relative;
@@ -70,7 +71,29 @@ button.prestigeFlames {
     cursor: pointer;
     text-align: center;
     position: relative;
+    border: 1px solid white;
+       margin-top: 50px;
+    margin-bottom: 10px;
 
+}
+
+button {
+    padding: 15px 32px;
+    border: 1px solid white;
+    align-self: center;
+    cursor: pointer;
+}
+
+button.treecutter {
+        background-color: green;
+    border-color: white;
+    padding: 15px 32px;
+    color: rgb(66, 37, 26);
+    border: 1px solid white;
+    align-self: center;
+    cursor: pointer;
+     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -110,6 +133,7 @@ div.tabs {
     float: left;
     width: 200px;
     height: 100vh;
+    border-right:  4px solid white;
 }  
 
 a.flame {

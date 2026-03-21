@@ -9,6 +9,9 @@ let gamedata = {
  BurnerCost: new Decimal("25"),
  Burners: new Decimal("0"),
  burnerEffect: new Decimal("1"),
+ lames: new Decimal("0"),
+ flameThreshold: new Decimal("1000"),
+ flameheat: new Decimal("0")
 }
 
 
@@ -18,6 +21,9 @@ function treegainCalculate() {
         x = x.add(gamedata.treeCutters.div(10))
     } 
     x = x.mul(gamedata.burnerEffect)
+    if (gamedata.flameheat.gt("0")) {
+        x = x.mul(gamedata.flameheat.pow(1.35))
+    }
     gamedata.treeGain = x
 }
 
@@ -90,5 +96,6 @@ function BuyBurner() {
 
     }
 }
+
 
 

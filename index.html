@@ -15,23 +15,25 @@
 <script src="Technical/break_eternity.js"></script>
 
 <body>
- <div class="Resource">   
-    <p class="Counters" id="IDd">0 log</p>
-    <p class="PrestigeFlame" id="flamesCounter">0 flames</p>
-</div>
-   <div class="tabs">     
-   <ul>
-   <li><a href="">Main</a> </li>
-   <li><a href="" class="flame"> Flames </a></li>
-   <li><a href="" class="solar"> Solar </a></li>
-   <li> <a href="">Settings</a> </li>
-   </ul>
-</div>
-   <div class="Mainupgrades"> <button onclick="Treecut()">Cut down a Tree</button>  <button class="purchaser" onclick="BuyAutomator()"> Automate the trees <span class="tooltiptext" id="tipTextAutomator">Cost: 50 Logs</span> </button>
-   <button class="purchaser" onclick="buyCutter()"> Buy a cutter <span class="tooltiptext" id="tipTextCutter">Cost: 5 Logs</span></button>
-   <button class="purchaser" onclick="BuyBurner()"> Buy a burner <span class="tooltiptext" id="tipTextBurner">Cost: 25 Logs</span></button>
-   <button id="flames" class="prestigeFlames" onclick="flameSac()"> Sacrifice all your logs for 0 flames <span class="tooltiptext" id="tipTextflames">Requires 1000 logs to Sacrifice</span></button></div>
-
+   <div class="page" id="Main">
+      <div class="Resource">   
+         <p class="Counters" id="IDd">0 log</p>
+         <p class="PrestigeFlame" id="flamesCounter">0 flames</p>
+      </div>
+      <div class="tabs">     
+         <ul>
+         <li><a href="Main">Main</a> </li>
+         <li><a href="" class="flame"> Flames </a></li>
+         <li><a href="" class="solar"> Solar </a></li>
+         <li> <a href="">Settings</a> </li>
+         </ul>
+      </div>
+      <div class="Mainupgrades"> <button class="treecutter" onclick="Treecut()">Cut down a Tree</button>  <button class="purchaser" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 50 logs<span class="tooltiptext" id="Automatoreffect">Cuts down one tree per 0.1 Second</span></button>
+         <button class="purchaser" onclick="buyCutter()"> Buy a cutter, cost: 5 logs <span class="tooltiptext" id="Cuttereffect">Get 0.1 more logs per tree</span></button>
+         <button class="purchaser" onclick="BuyBurner()"> Buy a burner, cost: 25 logs <span class="tooltiptext" id="BurnerEffect">Multiplies the logs gained by 1.3</span></button>
+         <button id="flames" class="prestigeFlames" onclick="flameSac()"> Sacrifice all your logs for 0 flames <span class="tooltiptext" id="tipTextflames">Requires 1000 logs to Sacrifice</span></button>
+         </div>
+    </div>
 
 <script src="js/Main.js"> </script>
 <script src="js/Flames.js"></script>
