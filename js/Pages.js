@@ -1,5 +1,5 @@
 
-const Pages = ['Mainupgrades', 'LogUpgrades', 'Flames', 'solarpage', 'settings'];
+const Pages = ['Mainupgrades', 'LogUpgrades', 'Flames', 'world', 'solarpage', 'settings'];
 
 function Switch(activePage) {
     Pages.forEach(page => {

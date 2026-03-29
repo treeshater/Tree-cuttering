@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: rgb(12, 12, 12);
+    background-color: rgb(10, 10, 10);
 
 }
 
@@ -29,7 +29,7 @@ ul {
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: rgb(37, 37, 37);
+    background-color: rgb(53, 28, 17);
 }
 
 li a{
@@ -58,7 +58,7 @@ li.active {
 .tooltiptext {
     visibility: hidden;
     width: 100px;
-    background-color: white;
+    background-color: rgb(53, 28, 17);
     color: black;
     text-align: center;
     border-radius: 7px;
@@ -70,7 +70,7 @@ li.active {
 }
 
 button.purchaser {
-    background-color: gray;
+    background-color: rgb(95, 52, 33);
     color: white;
     border: 1px solid white;
     cursor: pointer;
@@ -129,6 +129,7 @@ p.Counters {
     -webkit-text-fill-color: white;
     font-size: 25px;
     text-align: right;
+    padding-right: 10px;
     
 }
 
@@ -136,6 +137,23 @@ p.PrestigeFlame {
     -webkit-text-fill-color: red;
     font-size: 25px;
     text-align: right;
+    padding-right: 10px;
+}
+
+p.worldCounter {
+    -webkit-text-fill-color: green;
+    font-size: 25px;
+    text-align: right;
+    padding-right: 10px;
+    display: none;
+}
+
+p.solarCounter {
+    color: yellow;
+    font-size: 25px;
+    text-align: right;
+    padding-right: 10px;
+    display: none;
 }
 
 div.content-area {
@@ -148,7 +166,7 @@ div.content-area {
 div.Resource {
     height: auto;
     float: right;
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(53, 28, 17);
     width: 200px;
     border-left:  4px solid white;
     height: 100vh;
@@ -225,7 +243,7 @@ div.Paperranks div {
 
 a.flame {
     color: red;
-    visibility: hidden;
+    display: none;
 
 }
 a.flame:hover {
@@ -233,15 +251,26 @@ a.flame:hover {
     background-color: red;
 }  
 
+a.World {
+    color: green;
+    display: none;
+}
+
+a.World:hover {
+    color: white;
+    background-color: green;
+}
+
 a.solar {
     color: yellow;
-    visibility: hidden;
+    display: none;
 } 
 
 a.solar:hover {
     color: rgb(255, 255, 255);
     background-color: yellow;
 }
+
 
 p.effect {
     color: white;
@@ -288,10 +317,73 @@ p.paper {
 .bigGreenEffect {
     color: green;
     font-size: 25px;
+    text-align: center;
 }
 
 .bigRedEffect {
     color: red;
     font-size: 25px;
     text-align: center;
+}
+
+div.upgrades {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+button.upgrades {
+    background-color: rgb(77, 38, 23);
+    color: white;
+    border-radius: 3px;
+}
+
+button.upgrades:hover {
+    background-color: white;
+    color: rgb(77, 38, 23);
+}
+
+button.upgrades.bought {
+    background-color: green;
+    color: white;
+}
+
+.smallText {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    opacity: 0.5;
+}
+
+button.bigbutton {
+    font-size: 50px;
+    padding: 35px 35px;
+}
+
+.subpages {
+    font-size: 75%;
+}
+
+div.bigbutton {
+    position: relative;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
+div.center {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
+
+button.settings {
+    background-color: rgb(77, 38, 23);
+    border: 3px solid white;
+    color: white;
+}
+
+button.settings:hover {
+    background-color: white;
+    color: rgb(77, 38, 23);
 }

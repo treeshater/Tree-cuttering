@@ -2,9 +2,9 @@ let gamedata = {
  trees: new Decimal("0"),
  treeGain:   new Decimal("0"),
  treeAutomator:  false,
- treeAutomatorEffeciency: 100,
+ treeAutomatorEffeciency: 1000,
  treeCutters:  new Decimal("0"),
- treeAutomatorPrice:  new Decimal("100"),
+ treeAutomatorPrice:  new Decimal("100000"),
  treeCutterPrice: new Decimal("2.5"),
  BurnerCost: new Decimal("12.5"),
  Burners: new Decimal("0"),
@@ -21,7 +21,7 @@ let gamedata = {
     chairs: new Decimal("0"),
     chairEffect: new Decimal("1"),
     chairCost: new Decimal("15000"),
- }
+ },
 }
 
 
@@ -44,8 +44,13 @@ function Treecut() {
     treegainCalculate()
     gamedata.trees = gamedata.trees.add(gamedata.treeGain)
     flameFormula()
-    formatTrees()
-    document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
+    worldcheck()
+    if (gamedata.trees.gte("10000000")) {
+         document.getElementById('IDd').innerHTML = gamedata.trees.toExponential(2) + " logs" 
+        }
+    else {
+        document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs" 
+        }
 
 }
 
@@ -54,10 +59,15 @@ function check() {
          setInterval (() => {
             treegainCalculate(gamedata.treeGain)
             flameFormula()
-            formatTrees()
-             gamedata.trees = gamedata.trees.add(gamedata.treeGain)
-                document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
-          }, gamedata.treeAutomatorEffeciency )
+            worldcheck()
+            gamedata.trees = gamedata.trees.add(gamedata.treeGain)
+            if (gamedata.trees.gte("10000000")) {
+             document.getElementById('IDd').innerHTML = gamedata.trees.toExponential(2) + " logs" }
+            else {
+            document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs" 
+            }
+
+        }, gamedata.treeAutomatorEffeciency )
     }
 }
 
@@ -66,7 +76,11 @@ function buyCutter() {
         gamedata.trees = gamedata.trees.sub(gamedata.treeCutterPrice)
         gamedata.treeCutters = gamedata.treeCutters.add(1)
         gamedata.treeCutterPrice = gamedata.treeCutterPrice.mul(1.35)
-        document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
+            if (gamedata.trees.gte("10000000")) {
+             document.getElementById('IDd').innerHTML = gamedata.trees.toExponential(2) + " logs" }
+            else {
+            document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs" 
+            }
         document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + gamedata.treeCutterPrice.toFixed(2) + " logs, " + " Effect: Get " + gamedata.treeCutters.div(10).toFixed(2) + " more logs per tree"
     }
 }
@@ -77,7 +91,11 @@ function BuyAutomator() {
              {
                 gamedata.treeAutomator = true
                 gamedata.trees = gamedata.trees.sub(gamedata.treeAutomatorPrice)
-                document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
+                if (gamedata.trees.gte("10000000")) {
+             document.getElementById('IDd').innerHTML = gamedata.trees.toExponential(2) + " logs" }
+            else {
+            document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs" 
+            }
                 gamedata.treeAutomatorPrice = gamedata.treeAutomatorPrice.mul(2.5)
                 document.getElementById('automatorbutton').innerHTML = "Make the automator faster, cost: " + gamedata.treeAutomatorPrice.toFixed(2) + " logs, " + " Effect: Cut 1 tree every " + (gamedata.treeAutomatorEffeciency / 1000).toFixed(2) + " seconds"
                
@@ -85,8 +103,12 @@ function BuyAutomator() {
               }
               else { gamedata.treeAutomatorEffeciency = gamedata.treeAutomatorEffeciency / 1.1
                    gamedata.trees = gamedata.trees.sub(gamedata.treeAutomatorPrice)
-                   document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
-                   gamedata.treeAutomatorPrice = gamedata.treeAutomatorPrice.mul(2.5)
+                    if (gamedata.trees.gte("10000000")) {
+                        document.getElementById('IDd').innerHTML = gamedata.trees.toExponential(2) + " logs" }
+                    else {
+                        document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs" 
+            }
+                   gamedata.treeAutomatorPrice = gamedata.treeAutomatorPrice.mul(2.75)
                    document.getElementById('automatorbutton').innerHTML = "Make the automator faster, cost: " + gamedata.treeAutomatorPrice.toFixed(2) + " logs, " + " Effect: Cut 1 tree every " + (gamedata.treeAutomatorEffeciency / 100).toFixed(2) + " seconds"
                    
               }
@@ -96,15 +118,34 @@ function BuyAutomator() {
     
 }
 
+function burnercalc() {
+    let a = new Decimal("1")
+    
+    for (let i = 1; i <= gamedata.Burners; i++) {
+        if (gamedata.logUpgrades.one.bought === true) {
+                    a = a.mul(1.45)
+        }
+        else {
+            a = a.mul(1.3)
+        }
+
+    }
+    gamedata.burnerEffect = a
+}
+
 
 
 function BuyBurner() {
     if (gamedata.trees.gte(gamedata.BurnerCost)) {
         gamedata.Burners = gamedata.Burners.add(1)
         gamedata.trees = gamedata.trees.sub(gamedata.BurnerCost)
-        gamedata.BurnerCost = gamedata.BurnerCost.mul(1.85)
-        gamedata.burnerEffect = gamedata.burnerEffect.mul(1.30)
-        document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
+        gamedata.BurnerCost = gamedata.BurnerCost.mul(1.65)
+        burnercalc()
+            if (gamedata.trees.gte("10000000")) {
+                document.getElementById('IDd').innerHTML = gamedata.trees.toExponential(2) + " logs" }
+            else {
+                document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs" 
+            }
         document.getElementById('burnerbutton').innerHTML = "Buy a burner, cost: " + gamedata.BurnerCost.toFixed(2) + " logs, " + "Effect: Get " + gamedata.burnerEffect.toFixed(2) + " times more logs "
         
 
@@ -112,8 +153,4 @@ function BuyBurner() {
     }
 }
 
-function formatTrees() {
-    if (gamedata.trees.gte("10000000")) {
-        return gamedata.trees.toExponential(2)
-    }
-}
+

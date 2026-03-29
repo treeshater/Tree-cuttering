@@ -12,3 +12,10 @@ let logUpgrades = {
         bought: false,
     }
 }
+
+function buyUpgrade(num) {
+    if (gamedata.trees.gte(gamedata.logUpgrades.num.cost)) {
+        gamedata.trees = gamedata.trees.sub(gamedata.logUpgrades.num.cost)
+        gamedata.logUpgrades.num.bought = true
+    }
+}

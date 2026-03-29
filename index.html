@@ -6,19 +6,25 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="icon" type="icon" href="Images/icon.png">
    <title>
-   Tree cutterin'
+   Tree cuttering
    </title>
 </head>
 <body>
    <div class="Resource">   
       <p class="Counters" id="IDd">0 log</p>
       <p class="PrestigeFlame" id="flamesCounter">0 flames</p>
+      <p class="worldCounter" id="worldcounter"> 0 Worlds</p>
+      <p class="solarCounter" id="solarcounter"> 0 Solar energy </p>
+
    </div>
 
    <div class="tabs">     
       <ul class="">
       <li><a href="#Mainupgrades" >Main</a> </li>
+      <li><a href="#LogUpgrades" class="subpages" style="display: none;"> Log upgrades </a></li>
       <li><a href="#Flames" class="flame" id="flameA" > Flames </a></li>
+      <li><a href="#world" class="World" id="WorldTab"> World</a></li>
+      <li><a href="#worldmilestones" class="subpages" id="worldMilestone"> World Milestones</a></li>
       <li><a href="#solarpage" class="solar" > Solar </a></li>
       <li> <a href="#settings">Settings</a> </li>
       </ul>
@@ -27,8 +33,9 @@
    <div class="content-area">
       <div id="main">
       <div class="Mainupgrades" id="Mainupgrades"> 
+         
          <button class="treecutter" onclick="Treecut()">Cut down a Tree</button>
-         <button class="purchaser" id="automatorbutton" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 100 logs, Effect: cuts down a tree every 0.1 second.</button>
+         <button class="purchaser" id="automatorbutton" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 100000 logs, Effect: cuts down a tree every second.</button>
          <button class="purchaser" id="cutterbutton" onclick="buyCutter()"> Buy a cutter, cost: 2.5 logs, Effect: Get 0 more logs per tree</button>
          <button class="purchaser" id="burnerbutton" onclick="BuyBurner()"> Buy a burner, cost: 12.5 logs, Effect: Get 1 times more logs</button>
          <div class="rank">
@@ -47,22 +54,19 @@
             </div>
 
          </div>
-
          <button id="flames" class="prestigeFlames" onclick="flameSac()"> Sacrifice all your logs for 0 flames</button>
-
-            <div>
-          <ul class="subtabs">
-             <li class="subtabschild"><a href="#LogUpgrades">Log upgrades</a></li>
-             <li class="subtabschild"><a href="#Mainupgrades">Main upgrades</a></li>
-          </ul>
-      </div>
    </div>
 
    <div class="Logupgrades" id="LogUpgrades">
-         <div>
+      <div class="upgrades">
+         <div>            
+             <button class="upgrades" onclick="buyUpgrade(1)"> Burner multiplier is 1.45x instead of 1.3x</button>  
+             <p style="align-items: center;"> Cost: 1e10 logs </p>
+         </div>
+    
       </div>
-
    </div>
+</div>
 
 
       <div class="Flames" id="Flames" style="display: none;">
@@ -70,11 +74,22 @@
             <p class="bigRedEffect" id="flametempText"> Flame Temperature: 100 K </p>
             <p class="bigGreenEffect" id="flameHeatText"> The temperature of the flames are affecting log gain by 0.00x</p>
          </div>
-     
+      </div>
+
+      <div class="World" id="world" style="display: none;">
+         <div class="center">
+            <p class="smallText"> Your determination to cut all the trees has gotten you here i guess.... </p>
+            <p class="bigGreenEffect" id="worldPageCounter"> You have cut all trees on 0 planets. </p>
+            <button class="bigbutton" id="worldResetButton" onclick="worldReset()"> Reset the world </button>
+         </div>
+
       </div>
 
       <div class="solarpage" id="solarpage" style="display: none;"> i shat my pants </div>
-      <div class="settings" id="settings" style="display: none;"> yo idk </div>
+      <div class="settings" id="settings" style="display: none;"> 
+         <button class="settings" onclick="save()">Save</button> 
+         <button class="settings" onclick="wipeSave()">Delete your save</button>
+      </div>
    </div>
 
 <script src="Technical/break_eternity.js"></script>
@@ -82,5 +97,8 @@
 <script src="js/Flames.js"></script>
 <script src="js/Paperranks.js"></script>
 <script src="js/Pages.js"></script>
+<script src="js/Upgrades.js"></script>
+<script src="js/World.js"></script>
+<script src="js/saving.js"></script>
 </body>
 </html>

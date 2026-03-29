@@ -1,3 +1,4 @@
+
 let flametemp = new Decimal("100")
 
 function flameFormula() {
@@ -40,7 +41,7 @@ function flameSac() {
         document.getElementById("chairEffect").innerHTML = "Currently: " + gamedata.Chair.chairEffect.toFixed(2) + "^ More logs"
         document.getElementById('chairCount').innerHTML = gamedata.Chair.chairs.toFixed(2) + " Chairs"
         document.getElementById('chairCost').innerHTML = "Cost: " + gamedata.Chair.chairCost.toFixed(2) + " logs"
-        document.getElementById('flameA').style.visibility = "visible"
+        document.getElementById('flameA').style.display = "flex"
     }
 }
 
