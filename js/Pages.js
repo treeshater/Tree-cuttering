@@ -1,5 +1,6 @@
 
-const Pages = ['Mainupgrades', 'LogUpgrades', 'Flames', 'world', 'solarpage', 'settings'];
+
+const Pages = ['Mainupgrades', 'LogUpgrades', 'Flames', 'world', 'Challenges', 'worldmilestones', 'solarpage', 'settings'];
 
 function Switch(activePage) {
     Pages.forEach(page => {
@@ -32,6 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
     Switch('Mainupgrades');
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.subtabs a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const subpageId = this.getAttribute('href').substring(1);
+            Switch(subpageId);
+        });
+    });
+
+    Switch('Mainupgrades');
+});
 
 window.addEventListener('hashchange', function() {
     const pageId = window.location.hash.substring(1);

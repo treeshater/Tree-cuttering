@@ -11,10 +11,44 @@ gamedata.World = {
     }
  }
 
+function worldmilestoneCheck() {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.one.req) && gamedata.worldmilestones.one.unlocked === false) {
+        gamedata.worldmilestones.one.unlocked = true
+        document.getElementById('Worldmilestone1').style.backgroundColor = "green"
+        document.getElementById('Logupgrades').style.display = "flex"
+    }
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.two.req) && gamedata.worldmilestones.two.unlocked === false) {
+        gamedata.worldmilestones.two.unlocked = true
+        document.getElementById('Worldmilestone2').style.backgroundColor = "green"
+        worldmilestone2Effect()
+    }
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.three.req) && gamedata.worldmilestones.three.unlocked === false) {
+        gamedata.worldmilestones.three.unlocked = true
+        document.getElementById('Worldmilestone3').style.backgroundColor = "green"
+    }
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.four.req) && gamedata.worldmilestones.four.unlocked === false) {
+        gamedata.worldmilestones.four.unlocked = true
+        document.getElementById('Worldmilestone4').style.backgroundColor = "green"
+    }
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.five.req) && gamedata.worldmilestones.five.unlocked === false) {
+        gamedata.worldmilestones.five.unlocked = true
+        document.getElementById('Worldmilestone5').style.backgroundColor = "green"
+    }
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.six.req) && gamedata.worldmilestones.six.unlocked === false) {
+        gamedata.worldmilestones.six.unlocked = true
+        document.getElementById('Worldmilestone6').style.backgroundColor = "green"
+    }
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.break.req) && gamedata.worldmilestones.break.unlocked === false) {
+        gamedata.worldmilestones.break.unlocked = true
+        document.getElementById('Worldmilestonebreak').style.backgroundColor = "green"
+    }
+
+}
+
 function worldReset() {
     if (gamedata.trees.gte(gamedata.World.worldcap)) {
         gamedata.World.worlds = gamedata.World.worlds.add(1)
-        gamedata.World.worldcap = gamedata.World.worldcap.pow(1.05)
+        gamedata.World.worldcap = gamedata.World.worldcap.pow(1.25)
           gamedata.trees = new Decimal("0")
         gamedata.BurnerCost = new Decimal("25")
         gamedata.burnerEffect = new Decimal("1")
@@ -33,6 +67,7 @@ function worldReset() {
         }
         gamedata.flameHeat = new Decimal("0")
         flameHeat()
+        worldmilestoneCheck()
         document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
         document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + gamedata.treeCutterPrice.toFixed(2) + " logs, " + " Effect: Get " + gamedata.treeCutters.div(10).toFixed(2) + " more logs per tree"
         document.getElementById('burnerbutton').innerHTML = "Buy a burner, cost: " + gamedata.BurnerCost.toFixed(2) + " logs, " + "Effect: Get " + gamedata.burnerEffect.toFixed(2) + " times more logs "
@@ -44,7 +79,9 @@ function worldReset() {
         document.getElementById('chairCost').innerHTML = "Cost: " + gamedata.Chair.chairCost.toFixed(2) + " logs"
         document.getElementById('worldPageCounter').innerHTML = "You have cut all trees on " + gamedata.World.worlds.toFixed(0) + " worlds"
         document.getElementById('worldResetButton').style.display = "none"
-        document.getElementById('worldCounter').innerHTML = gamedata.World.worlds.toFixed(0) + " Worlds"
+        document.getElementById('worldcounter').style.display = "flex"
+        document.getElementById('worldMilestone').style.display = "flex"
+        document.getElementById('worldcounter').innerHTML = gamedata.World.worlds.toFixed(0) + " Worlds"
     }
 }
 
@@ -81,7 +118,7 @@ gamedata.worldmilestones = {
     },
     six: {
         name: "50 Worlds",
-        description: "Unlock the World challenges",
+        description: "Unlock the last challenge",
         req: new Decimal("50"),
         unlocked: false,
     },
@@ -94,3 +131,13 @@ gamedata.worldmilestones = {
 
 }
 
+function worldmilestone2Effect() {
+            setInterval(() => {
+    if (gamedata.worldmilestones.two.unlocked === true) {
+        buyCutter()
+        BuyBurner()
+        Buypaper()
+        buyChair()
+        }
+   }, 127);
+}

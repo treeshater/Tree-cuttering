@@ -20,11 +20,12 @@
 
    <div class="tabs">     
       <ul class="">
-      <li><a href="#Mainupgrades" >Main</a> </li>
-      <li><a href="#LogUpgrades" class="subpages" style="display: none;"> Log upgrades </a></li>
+      <li><a href="#Mainupgrades">Main</a> </li>
+      <li><a href="#LogUpgrades" id="Logupgrades" class="subpages" style="display: none;"> Log upgrades </a></li>
+      <li><a href="#Challenges" style="display: none;"> Challenges </a></li>
       <li><a href="#Flames" class="flame" id="flameA" > Flames </a></li>
       <li><a href="#world" class="World" id="WorldTab"> World</a></li>
-      <li><a href="#worldmilestones" class="subpages" id="worldMilestone"> World Milestones</a></li>
+      <li><a href="#worldmilestones" class="subpages" id="worldMilestone"  style="color: green; display: none;"> World Milestones</a></li>
       <li><a href="#solarpage" class="solar" > Solar </a></li>
       <li> <a href="#settings">Settings</a> </li>
       </ul>
@@ -59,12 +60,18 @@
 
    <div class="Logupgrades" id="LogUpgrades">
       <div class="upgrades">
-         <div>            
-             <button class="upgrades" onclick="buyUpgrade(1)"> Burner multiplier is 1.45x instead of 1.3x</button>  
-             <p style="align-items: center;"> Cost: 1e10 logs </p>
+         <div>          
+            <p style="align-items: center;"> Cost: 1e15 logs </p>  
+            <button class="upgrades" id="logUpgrade1" onclick="buyUpgrade(one, 'logUpgrade1')"> Burner multiplier is 1.2x instead of 1.15x</button>  
          </div>
     
       </div>
+   </div>
+</div>
+
+<div id="Challenges">
+   <div>
+      
    </div>
 </div>
 
@@ -78,11 +85,45 @@
 
       <div class="World" id="world" style="display: none;">
          <div class="center">
-            <p class="smallText"> Your determination to cut all the trees has gotten you here i guess.... </p>
+            <p class="smallText"> Your determination to cut all the trees is astonishing honestly.... </p>
             <p class="bigGreenEffect" id="worldPageCounter"> You have cut all trees on 0 planets. </p>
             <button class="bigbutton" id="worldResetButton" onclick="worldReset()"> Reset the world </button>
          </div>
 
+      </div>
+
+      <div class="worldMilestones" id="worldmilestones">
+         <div style="align-items: center;">
+            <div class="worldmilestone" id="Worldmilestone1">
+               <p style="text-align: center;"> 1 World </p>
+               <p style="text-align: center;"> Permanently unlock log upgrades </p>
+            </div>
+            <div class="worldmilestone" id="Worldmilestone2">
+               <p style="text-align: center;"> 2 Worlds </p>
+               <p style="text-align: center;"> Buy cutters, burners, papers aswell as chairs automatically </p>
+            </div>
+            <div class="worldmilestone" id="Worldmilestone3">
+               <p style="text-align: center;"> 5 Worlds </p>
+               <p style="text-align: center;"> log gain is boosted by the amount of worlds you have </p>
+            </div>
+            <div class="worldmilestone" id="Worldmilestone4">
+               <p style="text-align: center;"> 10 Worlds </p>
+               <p style="text-align: center;"> Unlock challenges </p>
+            </div>
+            <div class="worldmilestone" id="Worldmilestone5">
+               <p style="text-align: center;"> 20 Worlds </p>
+               <p style="text-align: center;"> Flame Heat is boosted by the amount of Burners </p>
+            </div>
+            <div class="worldmilestone" id="Worldmilestone6">
+               <p style="text-align: center;"> 50 Worlds </p>
+               <p style="text-align: center;"> Unlock the last challenge </p>
+
+            </div>
+            <div class="worldmilestone" id="Worldmilestonebreak">
+               <p style="text-align: center;"> 100 Worlds </p>
+               <p style="text-align: center;"> basically just break reality lol </p>
+            </div>
+         </div>
       </div>
 
       <div class="solarpage" id="solarpage" style="display: none;"> i shat my pants </div>

@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'share-tech';
+    font-family: share-tech;
     src: url(fonts/ShareTech-Regular.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -16,7 +16,7 @@ body.Main {
 } 
 
 * {
-    font-family: 'share-tech', sans-serif;
+    font-family: share-tech, sans-serif;
         border-radius: 2px;
 }
 
@@ -50,10 +50,7 @@ a.active {
     color: black;
 }
 
-li.active {
-    background-color: white;
-    color: black;
-}
+
 
 .tooltiptext {
     visibility: hidden;
@@ -239,6 +236,13 @@ div.Paperranks {
 div.Paperranks div {
     width: 25%;
     float: left;
+}
+
+div.worldmilestone {
+    background-color: red;
+    border-radius: 3px;
+    border: 3px dotted white;
+    padding: 10px 10px;
 }
 
 a.flame {
