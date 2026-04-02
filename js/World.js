@@ -7,38 +7,38 @@ gamedata.World = {
     if (gamedata.trees.gte(gamedata.World.worldcap)) {
         gamedata.treeGain = new Decimal("0")
         document.getElementById('WorldTab').style.display = "flex"
-        document.getElementById('worldResetButton').style.display = "flex"
+        document.getElementById('worldResetButton').style.display = "flex" 
     }
  }
 
 function worldmilestoneCheck() {
-    if (gamedata.World.worlds.gte(gamedata.worldmilestones.one.req) && gamedata.worldmilestones.one.unlocked === false) {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.one.req)) {
         gamedata.worldmilestones.one.unlocked = true
         document.getElementById('Worldmilestone1').style.backgroundColor = "green"
         document.getElementById('Logupgrades').style.display = "flex"
     }
-    if (gamedata.World.worlds.gte(gamedata.worldmilestones.two.req) && gamedata.worldmilestones.two.unlocked === false) {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.two.req)) {
         gamedata.worldmilestones.two.unlocked = true
         document.getElementById('Worldmilestone2').style.backgroundColor = "green"
         worldmilestone2Effect()
     }
-    if (gamedata.World.worlds.gte(gamedata.worldmilestones.three.req) && gamedata.worldmilestones.three.unlocked === false) {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.three.req)) {
         gamedata.worldmilestones.three.unlocked = true
         document.getElementById('Worldmilestone3').style.backgroundColor = "green"
     }
-    if (gamedata.World.worlds.gte(gamedata.worldmilestones.four.req) && gamedata.worldmilestones.four.unlocked === false) {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.four.req)) {
         gamedata.worldmilestones.four.unlocked = true
         document.getElementById('Worldmilestone4').style.backgroundColor = "green"
     }
-    if (gamedata.World.worlds.gte(gamedata.worldmilestones.five.req) && gamedata.worldmilestones.five.unlocked === false) {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.five.req)) {
         gamedata.worldmilestones.five.unlocked = true
         document.getElementById('Worldmilestone5').style.backgroundColor = "green"
     }
-    if (gamedata.World.worlds.gte(gamedata.worldmilestones.six.req) && gamedata.worldmilestones.six.unlocked === false) {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.six.req)) {
         gamedata.worldmilestones.six.unlocked = true
         document.getElementById('Worldmilestone6').style.backgroundColor = "green"
     }
-    if (gamedata.World.worlds.gte(gamedata.worldmilestones.break.req) && gamedata.worldmilestones.break.unlocked === false) {
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.break.req)) {
         gamedata.worldmilestones.break.unlocked = true
         document.getElementById('Worldmilestonebreak').style.backgroundColor = "green"
     }
@@ -69,8 +69,8 @@ function worldReset() {
         flameHeat()
         worldmilestoneCheck()
         document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
-        document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + gamedata.treeCutterPrice.toFixed(2) + " logs, " + " Effect: Get " + gamedata.treeCutters.div(10).toFixed(2) + " more logs per tree"
-        document.getElementById('burnerbutton').innerHTML = "Buy a burner, cost: " + gamedata.BurnerCost.toFixed(2) + " logs, " + "Effect: Get " + gamedata.burnerEffect.toFixed(2) + " times more logs "
+        document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + formatscientific(gamedata.treeCutterPrice) + " logs, " + " Effect: Get " + formatscientific(gamedata.treeCutters.div(10)) + " more logs per tree"
+         document.getElementById('burnerbutton').innerHTML = "Buy a burner, Cost: " + formatscientific(gamedata.BurnerCost) + " Logs, Effect: get " + formatscientific(gamedata.burnerEffect) + " times more logs"
         document.getElementById('paperCount').innerHTML = gamedata.Paper.papers.toFixed(2) + " Papers"
         document.getElementById('paperEffect').innerHTML = "Currently: " + gamedata.Paper.paperEffect.toFixed(2) + " x gain"
         document.getElementById('paperCost').innerHTML = "Cost: " + gamedata.Paper.paperCost.toFixed(2) + " logs"

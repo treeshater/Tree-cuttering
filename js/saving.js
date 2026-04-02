@@ -1,5 +1,3 @@
-
-
 function save() {
     localStorage.setItem("gamedatakey", JSON.stringify(gamedata))
 }
@@ -11,13 +9,13 @@ function wipeSave() {
  treeAutomator:  false,
  treeAutomatorEffeciency: 1000,
  treeCutters:  new Decimal("0"),
- treeAutomatorPrice:  new Decimal("100000"),
+ treeAutomatorPrice:  new Decimal(1000),
  treeCutterPrice: new Decimal("2.5"),
  BurnerCost: new Decimal("12.5"),
  Burners: new Decimal("0"),
  burnerEffect: new Decimal("1"),
  flames: new Decimal("0"),
- flameThreshold: new Decimal("5000000"),
+ flameThreshold: new Decimal("5e6"),
  flameheat: new Decimal("0"),
  Paper: {
     papers: new Decimal("0"),
@@ -44,6 +42,12 @@ function wipeSave() {
         bought: false,
     },
     four: {
+        bought: false,
+    },
+    five: {
+        bought: false,
+    },
+    six: {
         bought: false,
     },
  },
@@ -87,6 +91,7 @@ function wipeSave() {
         document.getElementById('worldcounter').style.display = "none"
         document.getElementById('worldMilestone').style.display = "none"
         document.getElementById('WorldTab').style.display = "none"
+        document.getElementById('flameA').style.display = "none"
 }
 function load() {
     let savedata = JSON.parse(localStorage.getItem("gamedatakey"))
@@ -120,6 +125,7 @@ function load() {
             worldcap: new Decimal(savedata.World.worldcap),
         },
         logUpgrades: {
+        
         one: {
             bought: savedata.logUpgrades.one.bought,
         },
@@ -131,6 +137,21 @@ function load() {
         },
         four: {
             bought: savedata.logUpgrades.four.bought,
+        },
+        five: {
+            bought: savedata.logUpgrades.five.bought,
+        },
+        six: {
+            bought: savedata.logUpgrades.six.bought,
+        },
+        seven: {
+            bought: savedata.logUpgrades.seven.bought,
+        },
+        eight: {
+            bought: savedata.logUpgrades.eight.bought,
+        },
+        nine: {
+            bought: savedata.logUpgrades.nine.bought,
         },
         },
         worldmilestones: {
@@ -161,9 +182,9 @@ function load() {
         }
         
     }
-        formatscientific(gamedata.trees, 'IDd', '', ' logs', '', '')
-        document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + gamedata.treeCutterPrice.toFixed(2) + " logs, " + " Effect: Get " + gamedata.treeCutters.div(10).toFixed(2) + " more logs per tree"
-        document.getElementById('burnerbutton').innerHTML = "Buy a burner, cost: " + gamedata.BurnerCost.toFixed(2) + " logs, " + "Effect: Get " + gamedata.burnerEffect.toFixed(2) + " times more logs "
+        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
+        document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + formatscientific(gamedata.treeCutterPrice) + " logs, " + " Effect: Get " + formatscientific(gamedata.treeCutters.div(10)) + " more logs per tree"
+        document.getElementById('burnerbutton').innerHTML = "Buy a burner, Cost: " + formatscientific(gamedata.BurnerCost) + " Logs, Effect: get " + formatscientific(gamedata.burnerEffect) + " times more logs"
         document.getElementById('flamesCounter').innerHTML = gamedata.flames.toFixed(2) + " Flames"
         document.getElementById('paperCount').innerHTML = gamedata.Paper.papers.toFixed(2) + " Papers"
         document.getElementById('paperEffect').innerHTML = "Currently: " + gamedata.Paper.paperEffect.toFixed(2) + " x gain"
@@ -172,7 +193,7 @@ function load() {
         document.getElementById('chairCount').innerHTML = gamedata.Chair.chairs.toFixed(2) + " Chairs"
         document.getElementById('chairCost').innerHTML = "Cost: " + gamedata.Chair.chairCost.toFixed(2) + " logs"
         document.getElementById('worldPageCounter').innerHTML = "You have cut all trees on " + gamedata.World.worlds.toFixed(0) + " worlds"
-        worldmilestoneCheck()
+        paperCalc()
         if (gamedata.treeAutomator === true) {
             check()
         }

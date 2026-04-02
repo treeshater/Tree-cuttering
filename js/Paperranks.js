@@ -1,9 +1,18 @@
 
+
 function paperCalc() {
     let y = new Decimal("1")
-    if (gamedata.Paper.papers.gte(1)) {
-        y = y.add(gamedata.Paper.papers.div(10))
+    if (gamedata.logUpgrades.three.bought === true) {
+        if (gamedata.Paper.papers.gte(1)) {
+            y = y.add(gamedata.Paper.papers.div(4))
+        }
     }
+    else { 
+        if (gamedata.Paper.papers.gte(1)) {
+            y = y.add(gamedata.Paper.papers.div(10))
+        }
+    }
+
     gamedata.Paper.paperEffect = y
     document.getElementById('paperEffect').innerHTML = "Currently: " + y.toFixed(2) + " x gain"
 }
@@ -16,24 +25,26 @@ function Buypaper() {
 
         gamedata.Paper.paperCost = gamedata.Paper.paperCost.mul(1.45)
         document.getElementById('paperCount').innerHTML = gamedata.Paper.papers.toFixed(2) + " Papers"
-        formatscientific(gamedata.trees, 'IDd', '', ' logs', '', '')
+        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
         document.getElementById('paperCost').innerHTML = "Cost: " + gamedata.Paper.paperCost.toFixed(2) + " logs"
-        formatscientific(gamedata.Paper.papers, 'paperCount', '', ' Papers', '', '')
-        formatscientific(gamedata.Paper.paperCost, 'paperCost', 'Cost:', ' Logs', '', '')
     }
 }
 
-function chairCalc() {
+function chairCalc() { 
     let x = new Decimal("1")
     if (gamedata.Chair.chairs.gte(1)) {
         x = x.add(gamedata.Chair.chairs.div(20))
     }
     gamedata.Chair.chairEffect = x
     document.getElementById("chairEffect").innerHTML = "Currently: " + x.toFixed(2) + "^ More logs"
-    formatscientific(x.toFixed(2), 'chairEffect', '', '^ More logs', '', '')
 
 }
 
+function chairAmountCalc() {
+    if (gamedata.logUpgrades.four === true) {
+        gamedata.Chair.chairs = gamedata.Chair.chairs.add(gamedata.Paper.papers.div(100))
+    }
+}
 
 
 function buyChair() {
@@ -44,9 +55,10 @@ function buyChair() {
             gamedata.Chair.chairs = gamedata.Chair.chairs.add(gamedata.Paper.papers.div(100))
         }
         chairCalc()
-        gamedata.Chair.chairCost = gamedata.Chair.chairCost.pow(1.35)
-        formatscientific(gamedata.Chair.chairs, 'chairCount', '', ' Chairs', '', '')
-        formatscientific(gamedata.trees, 'IDd', '', ' logs', '', '')
-        formatscientific(gamedata.Chair.chairCost, 'chairCost', 'Cost:', ' Logs', '', '')
+        chairAmountCalc()
+        gamedata.Chair.chairCost = gamedata.Chair.chairCost.pow(1.1)
+        document.getElementById('chairCount').innerHTML = gamedata.Chair.chairs.toFixed(2) + " Chairs"
+        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
+        document.getElementById('chairCost').innerHTML = "Cost: " + gamedata.Chair.chairCost.toFixed(2) + " logs"
     }
 }

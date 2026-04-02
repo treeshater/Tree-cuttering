@@ -21,11 +21,11 @@
    <div class="tabs">     
       <ul class="">
       <li><a href="#Mainupgrades">Main</a> </li>
-      <li><a href="#LogUpgrades" id="Logupgrades" class="subpages" style="display: none;"> Log upgrades </a></li>
+      <li><a href="#LogUpgrades" id="Logupgrades" class="subpages" style="display: flex;"> Log upgrades </a></li>
       <li><a href="#Challenges" style="display: none;"> Challenges </a></li>
       <li><a href="#Flames" class="flame" id="flameA" > Flames </a></li>
       <li><a href="#world" class="World" id="WorldTab"> World</a></li>
-      <li><a href="#worldmilestones" class="subpages" id="worldMilestone"  style="color: green; display: none;"> World Milestones</a></li>
+      <li><a href="#worldmilestones" class="subpages" id="worldMilestone"  style="color: green;"> World Milestones</a></li>
       <li><a href="#solarpage" class="solar" > Solar </a></li>
       <li> <a href="#settings">Settings</a> </li>
       </ul>
@@ -36,8 +36,8 @@
       <div class="Mainupgrades" id="Mainupgrades"> 
          
          <button class="treecutter" onclick="Treecut()">Cut down a Tree</button>
-         <button class="purchaser" id="automatorbutton" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 100000 logs, Effect: cuts down a tree every second.</button>
-         <button class="purchaser" id="cutterbutton" onclick="buyCutter()"> Buy a cutter, cost: 2.5 logs, Effect: Get 0 more logs per tree</button>
+         <button class="purchaser" id="automatorbutton" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 1000 logs, Effect: cuts down a tree every second.</button>
+         <button class="purchaser" id="cutterbutton" onclick="buyCutter()"> Buy a cutter, cost: 2.5 logs, Effect: Get 0 more logs per tree <button onclick="buyMax(gamedata.trees, gamedata.treeCutterPrice, buyCutter())"> Buy max </button></button>
          <button class="purchaser" id="burnerbutton" onclick="BuyBurner()"> Buy a burner, cost: 12.5 logs, Effect: Get 1 times more logs</button>
          <div class="rank">
             <div class="rankchild">        
@@ -60,9 +60,50 @@
 
    <div class="Logupgrades" id="LogUpgrades">
       <div class="upgrades">
-         <div>          
-            <p style="align-items: center;"> Cost: 1e15 logs </p>  
-            <button class="upgrades" id="logUpgrade1" onclick="buyUpgrade(one, 'logUpgrade1')"> Burner multiplier is 1.2x instead of 1.15x</button>  
+         <div class="logUpgrades" id="logupgrade1">          
+            <p style="text-align: center;"> #1: Burn it all </p> 
+            <p style="font-size: 17px; text-align: center;"> Burner multiplier is 1.2x instead of 1.15x</p>  
+            <p style="text-align: center;"> Cost: 1e15 logs </p> 
+         </div>
+                  <div class="logUpgrades" id="logupgrade2">          
+            <p style="text-align: center;"> #2: Have you guys ever thought about like how this is actually like a horrible thing that we are ruining the enviroment and like we should stop cutting down trees </p> 
+            <p style="font-size: 17px; text-align: center;"> Paper effect is +0.25x instead of +0.1x </p>  
+            <p style="text-align: center;"> Cost: 1e22 logs </p> 
+         </div>
+                  <div class="logUpgrades" id="logupgrade3">          
+            <p style="text-align: center;"> #3: Amazing public relations </p> 
+            <p style="font-size: 17px; text-align: center;"> Get two cutters for the price of one </p>  
+            <p style="text-align: center;"> Cost: 5e30 logs </p> 
+         </div>
+                  <div class="logUpgrades" id="logupgrade4" style="display: none;">          
+            <p style="text-align: center;"> #4: How can paper turn into chairs? </p> 
+            <p style="font-size: 17px; text-align: center;"> Get one extra chair for every 100 papers you have </p>  
+            <p style="text-align: center;"> Cost: 1e38 logs </p> 
+         </div>
+         <div class="logUpgrades" id="logupgrade5" style="display: none;">          
+            <p style="text-align: center;"> #5: Straight heat </p> 
+            <p style="font-size: 17px; text-align: center;"> The formula for the log gain multiplier from flame heat improves </p>  
+            <p style="text-align: center;"> Cost: 1e50 logs </p> 
+         </div>
+                  <div class="logUpgrades" id="logupgrade6" style="display: none;">          
+            <p style="text-align: center;"> #6: World burning </p> 
+            <p style="font-size: 17px; text-align: center;"> World amount boosts flames gain </p>  
+            <p style="text-align: center;"> Cost: 1e72 logs </p> 
+         </div>
+                  <div class="logUpgrades" id="logupgrade7" style="display: none;">          
+            <p style="text-align: center; text-align: center;"> #1: Burn it all </p> 
+            <p style="font-size: 17px;"> Burner multiplier is 1.2x instead of 1.15x</p>  
+            <p style="text-align: center;"> Cost: 1e15 logs </p> 
+         </div>
+                  <div class="logUpgrades" id="logupgrade8" style="display: none;">          
+            <p style="text-align: center;"> #1: Burn it all </p> 
+            <p style="font-size: 17px; text-align: center;"> Burner multiplier is 1.2x instead of 1.15x</p>  
+            <p style="text-align: center;"> Cost: 1e15 logs </p> 
+         </div>
+                  <div class="logUpgrades" id="logupgrade9" style="display: none;">          
+            <p style="text-align: center;"> #1: Burn it all </p> 
+            <p style="font-size: 17px; text-align: center;"> Burner multiplier is 1.2x instead of 1.15x</p>  
+            <p style="text-align: center;"> Cost: 1e15 logs </p> 
          </div>
     
       </div>
