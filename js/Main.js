@@ -1,11 +1,10 @@
-
-let gamedata = {
+const originalValues = {
  trees: new Decimal("0"),
  treeGain:   new Decimal("0"),
- treeAutomator:  false,
- treeAutomatorEffeciency: 1000,
+ treeAutomator: false,
+ treeAutomatorEffeciency: new Decimal(1100),
  treeCutters:  new Decimal("0"),
- treeAutomatorPrice:  new Decimal(1100),
+ treeAutomatorPrice:  new Decimal(1000),
  treeCutterPrice: new Decimal("2.5"),
  BurnerCost: new Decimal("12.5"),
  Burners: new Decimal("0"),
@@ -13,6 +12,8 @@ let gamedata = {
  flames: new Decimal("0"),
  flameThreshold: new Decimal("5e6"),
  flameheat: new Decimal("0"),
+ flamethrowers: new Decimal("0"),
+ flamethrowerCost: new Decimal("1e12"),
  Paper: {
     papers: new Decimal("0"),
     paperEffect: new Decimal("1"),
@@ -25,27 +26,30 @@ let gamedata = {
  },
 }
 
-function buyMax(n1 ,n2, func) {
-    do {
-       func
-    }
-    while (n1.gte(n2) === true)
-}
-
-
+let gamedata = originalValues
 
 function treegainCalculate() {
     let x = new Decimal("0.10")
     if (gamedata.treeCutters.gte(1)) {
-        x = x.add(gamedata.treeCutters.div(10))
+        x = x.add(gamedata.treeCutters.div(5))
     } 
     x = x.mul(gamedata.burnerEffect)
-    if (gamedata.flameheat.gt("0")) {
-        if (gamedata.logUpgrades.five.bought === true) {
-            x = (x.mul(gamedata.flameheat.mul(4)).pow(1.35))
+    if (gamedata.Challenges.three.currentlyEnabled === false) {
+        if (gamedata.flameheat.gt("0")) {
+            if (gamedata.logUpgrades.five.bought === true) {
+                x = (x.mul(gamedata.flameheat.mul(4)).pow(1.35))
+            }
+            else {
+                x = x.mul(gamedata.flameheat.pow(1.35))
+            }
         }
-        else {
-            x = x.mul(gamedata.flameheat.pow(1.35))
+    }
+    else {
+
+    }
+    if (gamedata.Challenges.four.currentlyEnabled === true) {
+        if (gamedata.flameheat.gt("0")) {
+                x = x.div(gamedata.flameheat.pow(1.35))
         }
     }
     x = x.mul(gamedata.Paper.paperEffect)
@@ -53,7 +57,51 @@ function treegainCalculate() {
     if (gamedata.worldmilestones.three.unlocked === true) {
         x = x.mul(gamedata.World.worlds.add(1).pow(1.75))
     }
+    if (gamedata.Challenges.one.currentlyEnabled === true) {
+        x = x.pow(0.7)
+    }
+    if (gamedata.Challenges.two.currentlyEnabled === true) {
+        x = x.pow(0.05)
+    }
      gamedata.treeGain = x
+}
+
+function buymax(data, rate, price, amount, operation, currencyName) {
+    let currency = data[currencyName]; 
+    if (currency.lt(data.price)) return;
+
+    let n = new Decimal(0);
+    let totalCost = new Decimal(0);
+    const r = new Decimal(rate);
+
+    if (operation === 'mul') {
+        let constant = currency.mul(r.sub(1)).div(data[price]).add(1);
+        n = constant.log(r).floor();
+        
+        totalCost = data[price].mul(Decimal.pow(r, n).sub(1)).div(r.sub(1));
+    } 
+    else if (operation === 'pow') {
+        let logPriceCurr = currency.log(data.price);
+        if (logPriceCurr.lt(1)) return;
+
+        n = logPriceCurr.log(r).floor().add(1);
+        totalCost = data[price].pow(Decimal.pow(r, n.sub(1)));
+    }
+
+    if (n.gt(0) && currency.gte(totalCost)) {
+        data[amount] = data[amount].add(n);
+        data[currencyName] = currency.sub(totalCost); 
+        
+        if (operation === 'mul') {
+            data[price] = data[price].mul(Decimal.pow(rate, n));
+        } else {
+            data[price] = data[price].pow(Decimal.pow(rate, n));
+        }
+        
+        if (typeof updateUI === "function") updateUI();
+        treegainCalculate()
+        burnercalc()
+    }
 }
 
 function Treecut() {
@@ -61,21 +109,16 @@ function Treecut() {
     gamedata.trees = gamedata.trees.add(gamedata.treeGain)
     flameFormula()
     worldcheck()
-    document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
+    updateUI()
 }
 
 function check() {
      setInterval (() => {
     if (gamedata.treeAutomator === true) {
-        
-            treegainCalculate(gamedata.treeGain)
-            flameFormula()
-            worldcheck()
-            gamedata.trees = gamedata.trees.add(gamedata.treeGain)
-            document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
-
+          Treecut()
+          updateUI()
         }
-    }, gamedata.treeAutomatorEffeciency )
+    }, gamedata.treeAutomatorEffeciency)
 }
 
 function buyCutter() {
@@ -87,22 +130,26 @@ function buyCutter() {
         else {
             gamedata.treeCutters = gamedata.treeCutters.add(1)
         }
-        gamedata.treeCutterPrice = gamedata.treeCutterPrice.mul(1.35)
-        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
-        document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + formatscientific(gamedata.treeCutterPrice) + " logs, " + " Effect: Get " + formatscientific(gamedata.treeCutters.div(10)) + " more logs per tree"
+        gamedata.treeCutterPrice = gamedata.treeCutterPrice.mul(1.25)
+        updateUI()
     }
 }
+
+let treeAutomator =  false;
+
 
 function BuyAutomator() {
     if (gamedata.trees.gte(gamedata.treeAutomatorPrice)) 
         { 
+                if (gamedata.treeAutomator === false) {
+                    check()
+                }
                 gamedata.treeAutomator = true
                 gamedata.trees = gamedata.trees.sub(gamedata.treeAutomatorPrice)
-                document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
-                check()
+
                 gamedata.treeAutomatorPrice = gamedata.treeAutomatorPrice.mul(2.5)
                 gamedata.treeAutomatorEffeciency = gamedata.treeAutomatorEffeciency / 1.1
-                document.getElementById('automatorbutton').innerHTML = "Make the automator faster, cost: " + gamedata.treeAutomatorPrice.toFixed(2) + " logs, " + " Effect: Cut 1 tree every " + (gamedata.treeAutomatorEffeciency / 1000).toFixed(2) + " seconds"
+                updateUI()
                    
               }
 
@@ -132,10 +179,9 @@ function BuyBurner() {
     if (gamedata.trees.gte(gamedata.BurnerCost)) {
         gamedata.Burners = gamedata.Burners.add(1)
         gamedata.trees = gamedata.trees.sub(gamedata.BurnerCost)
-        gamedata.BurnerCost = gamedata.BurnerCost.mul(1.65)
+        gamedata.BurnerCost = gamedata.BurnerCost.mul(1.35)
         burnercalc()
-        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
-        document.getElementById('burnerbutton').innerHTML = "Buy a burner, Cost: " + formatscientific(gamedata.BurnerCost) + " Logs, Effect: get " + formatscientific(gamedata.burnerEffect) + " times more logs"
+        updateUI()
        
         
 
@@ -143,11 +189,3 @@ function BuyBurner() {
     }
 }
 
-function formatscientific(num) {
-    if (num.gte("1e6")) {
-        return num.toExponential(2)
-    }
-    else {
-        return num.toFixed(2)
-    } 
-}

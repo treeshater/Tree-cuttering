@@ -1,4 +1,4 @@
- gamedata.logUpgrades = {
+ originalValues.logUpgrades = {
     one: {
         name: "Burn it all",
         description: "Burner multiplier is 1.2x instead of 1.15x",
@@ -36,40 +36,55 @@
         bought: false
     },
     seven: {
-        name: "Reality bending",
-        description: "Unlock the black hole",
-        cost: new Decimal(1e150),
-        bought: false
-    },
-    eight: {
         name: "No infinity layer???",
         description: "Boost log gain by ^1.79",
         cost: new Decimal("1.79e308"),
         bought: false
     },
+    eight: {
+        name: "Reality bending",
+        description: "Unlock the black hole",
+        cost: new Decimal("e45800"),
+        bought: false
+    },
     nine: {
         name: "The final challenge?",
         description: "Unlock the last log challenge",
-        cost: new Decimal("1e10000"),
+        cost: new Decimal("ee390"),
         bought: false
     },
+    ten: {
+        name: "placeholder",
+        description: "placeholder",
+        cost: new Decimal("5.35666")
+    }
 }
 
+originalValues.flameUpgrades = {
+    one: {
+        name: "placeholder",
+        description: "Placeholder",
+        cost: new Decimal("2"),
+        bought: false,
+    }
+}
  
 
-function buyUpgrade(num, id) { 
-    if (gamedata.trees.gte(num.cost) && num.bought === false) {
-        gamedata.trees = gamedata.trees.sub(num.cost)
-        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
+function buyUpgrade(num, currency, id) { 
+    if (currency.gte(num.cost) && num.bought === false) {
+        currency = currency.sub(num.cost)
+        document.getElementById('IDd').innerHTML = formatscientific(currency) + " logs"
         num.bought = true
         document.getElementById(id).style.backgroundColor = "green"
     }
 }
     
-document.getElementById("logupgrade1").addEventListener('click', buyUpgrade.bind(gamedata.logUpgrades.one, "logupgrade1"));
-document.getElementById("logupgrade2").addEventListener("click", buyUpgrade.bind(gamedata.logUpgrades.two, "logupgrade2"));
-document.getElementById("logupgrade3").addEventListener("click", buyUpgrade.bind(gamedata.logUpgrades.three, "logupgrade3"));
-document.getElementById("logupgrade4").addEventListener("click", buyUpgrade.bind(gamedata.logUpgrades.four, "logupgrade4"));
-document.getElementById("logupgrade5").addEventListener("click", buyUpgrade.bind(gamedata.logUpgrades.five, "logupgrade5"));
+const logupgradeids = document.querySelectorAll('logUpgrades')
+const upgradenums = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']
+
+logupgradeids.forEach = (i = 0) => {
+    document.getElementById(logupgradeids[i]).addEventListener('click', buyUpgrade.bind(gamedata.logUpgrades.upgradenums[i], gamedata.trees, logupgradeids[i]));
+    i = i + 1 
+}
 
 

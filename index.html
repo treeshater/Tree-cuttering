@@ -8,6 +8,18 @@
    <title>
    Tree cuttering
    </title>
+
+   <script src="js/Technical/break_eternity.js" defer></script>
+   <script src="js/Main.js" defer></script>
+
+   <script src="js/Technical/settings.js" defer></script>
+   <script src="js/Challenges.js" defer></script>
+   <script src="js/Flames.js" defer></script>
+   <script src="js/Paperranks.js" defer></script>
+   <script src="js/Pages.js" defer></script>
+   <script src="js/Upgrades.js" defer></script>
+   <script src="js/World.js" defer></script>
+   <script src="js/Technical/saving.js" defer></script>
 </head>
 <body>
    <div class="Resource">   
@@ -15,20 +27,25 @@
       <p class="PrestigeFlame" id="flamesCounter">0 flames</p>
       <p class="worldCounter" id="worldcounter"> 0 Worlds</p>
       <p class="solarCounter" id="solarcounter"> 0 Solar energy </p>
-
    </div>
 
    <div class="tabs">     
-      <ul class="">
+      <ul>
       <li><a href="#Mainupgrades">Main</a> </li>
-      <li><a href="#LogUpgrades" id="Logupgrades" class="subpages" style="display: flex;"> Log upgrades </a></li>
-      <li><a href="#Challenges" style="display: none;"> Challenges </a></li>
       <li><a href="#Flames" class="flame" id="flameA" > Flames </a></li>
       <li><a href="#world" class="World" id="WorldTab"> World</a></li>
-      <li><a href="#worldmilestones" class="subpages" id="worldMilestone"  style="color: green;"> World Milestones</a></li>
       <li><a href="#solarpage" class="solar" > Solar </a></li>
       <li> <a href="#settings">Settings</a> </li>
       </ul>
+      <div class="subtabs">
+         <ul id="Mainsubpages">
+            <li><a href="#LogUpgrades" id="Logupgrades" style="display: none; align-self: center;"> Log upgrades </a></li>
+            <li><a href="#LogChallenges" style="display: none;" id="LogChallengestab"> Log Challenges </a></li>
+         </ul>
+         <ul style="display: none;" id="Worldsubpages">
+            <li><a href="#worldmilestones" id="worldMilestone"  style="color: green; display: none;"> World Milestones</a></li>
+         </ul>
+      </div>
    </div>
 
    <div class="content-area">
@@ -36,13 +53,20 @@
       <div class="Mainupgrades" id="Mainupgrades"> 
          
          <button class="treecutter" onclick="Treecut()">Cut down a Tree</button>
-         <button class="purchaser" id="automatorbutton" onclick="BuyAutomator()"> PERMANENTLY Automate the trees, cost: 1000 logs, Effect: cuts down a tree every second.</button>
-         <button class="purchaser" id="cutterbutton" onclick="buyCutter()"> Buy a cutter, cost: 2.5 logs, Effect: Get 0 more logs per tree <button onclick="buyMax(gamedata.trees, gamedata.treeCutterPrice, buyCutter())"> Buy max </button></button>
-         <button class="purchaser" id="burnerbutton" onclick="BuyBurner()"> Buy a burner, cost: 12.5 logs, Effect: Get 1 times more logs</button>
+         <button class="purchaser" id="automatorbutton" onclick="BuyAutomator()"> Automate the trees, cost: 1000 logs, Effect: cuts down a tree every second.</button>
+         <div>
+               <button class="purchaser" id="cutterbutton" onclick="buyCutter()"> Buy a cutter, cost: 2.5 logs, Effect: Get 0 more logs per tree</button>
+               <button onclick="buymax(gamedata, 1.35, 'treeCutterPrice', 'treeCutters', 'mul', 'trees')"> Buy max </button>
+         </div>
+         <div>
+               <button class="purchaser" id="burnerbutton" onclick="BuyBurner()"> Buy a burner, cost: 12.5 logs, Effect: Get 1 times more logs</button>
+               <button onclick="buymax(gamedata, 1.35, 'BurnerCost', 'Burners', 'mul', 'trees')"> Buy max </button>
+         </div>
          <div class="rank">
             <div class="rankchild">        
               <p class="paper" id="paperCount"> 0 papers </p>
               <button class="paper" onclick="Buypaper()"> Increase log gain by +0.1x </button>  
+              <button onclick="buymax(gamedata, 1.45, 'paperCost', 'papers', 'mul', 'trees')"> Buy max </button>
               <p id="paperEffect"> Currently: 1.0x gain</p> 
               <p id="paperCost"> Cost: 1250 logs</p>
             </div>       
@@ -50,6 +74,7 @@
             <div class="rankchild"> 
                <p class="paper" id="chairCount"> 0 Chairs</p>
                <button class="paper" onclick="buyChair()"> Increase log gain by +x<sup>0.05</sup></button>
+               <button onclick="buymax(gamedata, 1.2, 'Chair.chairCost', 'Chair.chairs', 'pow', 'trees')"> Buy max </button>
                <p id="chairEffect"> Currently: x^1 more logs</p> 
                <p id="chairCost"> Cost: 15000 logs</p>
             </div>
@@ -87,32 +112,55 @@
          </div>
                   <div class="logUpgrades" id="logupgrade6" style="display: none;">          
             <p style="text-align: center;"> #6: World burning </p> 
-            <p style="font-size: 17px; text-align: center;"> World amount boosts flames gain </p>  
+            <p style="font-size: 17px; text-align: center;">World amount boosts flames gain</p>  
             <p style="text-align: center;"> Cost: 1e72 logs </p> 
          </div>
-                  <div class="logUpgrades" id="logupgrade7" style="display: none;">          
-            <p style="text-align: center; text-align: center;"> #1: Burn it all </p> 
-            <p style="font-size: 17px;"> Burner multiplier is 1.2x instead of 1.15x</p>  
-            <p style="text-align: center;"> Cost: 1e15 logs </p> 
+         <div class="logUpgrades" id="logupgrade7" style="display: none;">          
+            <p style="text-align: center; text-align: center;"> #7: No infinity layer? </p> 
+            <p style="font-size: 17px;">Boost log gain by ^1.79</p>  
+            <p style="text-align: center;"> Cost: 1.79e308 logs </p> 
          </div>
-                  <div class="logUpgrades" id="logupgrade8" style="display: none;">          
-            <p style="text-align: center;"> #1: Burn it all </p> 
-            <p style="font-size: 17px; text-align: center;"> Burner multiplier is 1.2x instead of 1.15x</p>  
-            <p style="text-align: center;"> Cost: 1e15 logs </p> 
+         <div class="logUpgrades" id="logupgrade8" style="display: none;">          
+            <p style="text-align: center;"> #8: Reality bending </p> 
+            <p style="font-size: 17px; text-align: center;"> Unlock the black hole </p>  
+            <p style="text-align: center;"> Cost: 1e45800 logs </p> 
          </div>
-                  <div class="logUpgrades" id="logupgrade9" style="display: none;">          
-            <p style="text-align: center;"> #1: Burn it all </p> 
-            <p style="font-size: 17px; text-align: center;"> Burner multiplier is 1.2x instead of 1.15x</p>  
-            <p style="text-align: center;"> Cost: 1e15 logs </p> 
-         </div>
-    
       </div>
    </div>
 </div>
 
-<div id="Challenges">
+<div id="LogChallenges">
    <div>
-      
+      <div class="logchallenge" id="challenge1">
+         <p> Everything for one </p>
+         <p> Buying one upgrade affects the cost for all other also ^0.7 log gain </p>
+         <p> Completement: 1e50 logs</p>
+         <p> Completed: 0/7 </p>
+      </div>
+      <div class="logchallenge" id="challenge2">
+         <p> Holy nerf </p>
+         <p> ^0.05 log gain </p>
+         <p> Completement: 1e8 logs</p>
+         <p> Completed: 0/45 </p>
+      </div>
+      <div class="logchallenge" id="challenge3">
+         <p> No flames </p>
+         <p> Flame heat does absolutely nothing </p>
+         <p> Completement: 2e145 logs</p>
+         <p> Completed: 0/100 </p>
+      </div>
+      <div class="logchallenge" id="challenge4">
+         <p> Freezing </p>
+         <p> Flame heat divides your log gain </p>
+         <p> Completement: 4.34e23 logs</p>
+         <p> Completed: 0/3 </p>
+      </div>
+      <div class="logchallenge" id="challenge5">
+         <p> All at once </p>
+         <p> All log challenges are active at the same time </p>
+         <p> Completement: 5700 logs</p>
+         <p> Completed: 0/1000 </p>
+      </div>
    </div>
 </div>
 
@@ -122,6 +170,11 @@
             <p class="bigRedEffect" id="flametempText"> Flame Temperature: 100 K </p>
             <p class="bigGreenEffect" id="flameHeatText"> The temperature of the flames are affecting log gain by 0.00x</p>
          </div>
+         <div>
+            <p> 0 Flamethrowers </p>
+            <button class="PrestigeFlame" onclick=""> Cost: 0 </button>
+            <p> Generate flames </p>
+         </div>
       </div>
 
       <div class="World" id="world" style="display: none;">
@@ -129,12 +182,13 @@
             <p class="smallText"> Your determination to cut all the trees is astonishing honestly.... </p>
             <p class="bigGreenEffect" id="worldPageCounter"> You have cut all trees on 0 planets. </p>
             <button class="bigbutton" id="worldResetButton" onclick="worldReset()"> Reset the world </button>
+            <button onclick="worldReset()"> Reset the world anyway </button>
          </div>
 
       </div>
 
       <div class="worldMilestones" id="worldmilestones">
-         <div style="align-items: center;">
+         <div style="align-content: center;">
             <div class="worldmilestone" id="Worldmilestone1">
                <p style="text-align: center;"> 1 World </p>
                <p style="text-align: center;"> Permanently unlock log upgrades </p>
@@ -144,18 +198,22 @@
                <p style="text-align: center;"> Buy cutters, burners, papers aswell as chairs automatically </p>
             </div>
             <div class="worldmilestone" id="Worldmilestone3">
+               <p style="text-align: center;"> 3 Worlds </p>
+               <p style="text-align: center;"> Automator doesn't reset </p>
+            </div>
+            <div class="worldmilestone" id="Worldmilestone4">
                <p style="text-align: center;"> 5 Worlds </p>
                <p style="text-align: center;"> log gain is boosted by the amount of worlds you have </p>
             </div>
-            <div class="worldmilestone" id="Worldmilestone4">
+            <div class="worldmilestone" id="Worldmilestone5">
                <p style="text-align: center;"> 10 Worlds </p>
                <p style="text-align: center;"> Unlock challenges </p>
             </div>
-            <div class="worldmilestone" id="Worldmilestone5">
+            <div class="worldmilestone" id="Worldmilestone6">
                <p style="text-align: center;"> 20 Worlds </p>
                <p style="text-align: center;"> Flame Heat is boosted by the amount of Burners </p>
             </div>
-            <div class="worldmilestone" id="Worldmilestone6">
+            <div class="worldmilestone" id="Worldmilestone7">
                <p style="text-align: center;"> 50 Worlds </p>
                <p style="text-align: center;"> Unlock the last challenge </p>
 
@@ -167,20 +225,22 @@
          </div>
       </div>
 
-      <div class="solarpage" id="solarpage" style="display: none;"> i shat my pants </div>
+      <div class="solarpage" id="solarpage" style="display: none;"></div>
       <div class="settings" id="settings" style="display: none;"> 
+         <div class="popup" id="inputsave">
+            <p> Input valid Save: </p>
+            <input type="text" id="importText">
+            <button onclick="popupclose('inputsave')"> No </button>
+            <button onclick="importingFile()"> Enter </button>
+         </div>
          <button class="settings" onclick="save()">Save</button> 
          <button class="settings" onclick="wipeSave()">Delete your save</button>
+         <button class="settings" onclick="exportsaveclipboard()">Export to clipboard</button>
+         <button class="settings" id="fileexportbutton" onclick="exportsavetofile()"> Export as file </button>
+         <button class="settings" onclick="popup('inputsave')"> Import file </button>
       </div>
    </div>
 
-<script src="Technical/break_eternity.js"></script>
-<script src="js/Main.js"></script>
-<script src="js/Flames.js"></script>
-<script src="js/Paperranks.js"></script>
-<script src="js/Pages.js"></script>
-<script src="js/Upgrades.js"></script>
-<script src="js/World.js"></script>
-<script src="js/saving.js"></script>
+
 </body>
 </html>

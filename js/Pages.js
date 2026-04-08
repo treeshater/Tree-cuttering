@@ -1,6 +1,5 @@
 
-
-const Pages = ['Mainupgrades', 'LogUpgrades', 'Flames', 'world', 'Challenges', 'worldmilestones', 'solarpage', 'settings'];
+const Pages = ['Mainupgrades', 'LogUpgrades', 'Flames', 'world', 'LogChallenges', 'worldmilestones', 'solarpage', 'settings'];
 
 function Switch(activePage) {
     Pages.forEach(page => {
@@ -51,3 +50,7 @@ window.addEventListener('hashchange', function() {
         Switch(pageId);
     }
 });
+
+const mainSubpages = document.querySelectorAll('Mainsubpages')
+const flameSubpages = document.querySelectorAll('Flamessubpages')
+const worldSubpages = document.querySelectorAll('Worldsubpages')

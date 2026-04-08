@@ -1,4 +1,4 @@
-gamedata.World = {
+originalValues.World = {
     worlds: new Decimal("0"),
     worldcap: new Decimal("3.04e13")
  }
@@ -33,10 +33,15 @@ function worldmilestoneCheck() {
     if (gamedata.World.worlds.gte(gamedata.worldmilestones.five.req)) {
         gamedata.worldmilestones.five.unlocked = true
         document.getElementById('Worldmilestone5').style.backgroundColor = "green"
+        document.getElementById('LogChallengestab').style.display = 'flex'
     }
     if (gamedata.World.worlds.gte(gamedata.worldmilestones.six.req)) {
         gamedata.worldmilestones.six.unlocked = true
         document.getElementById('Worldmilestone6').style.backgroundColor = "green"
+    }
+    if (gamedata.World.worlds.gte(gamedata.worldmilestones.seven.req)) {
+        gamedata.worldmilestones.seven.unlocked = true
+        document.getElementById('Worldmilestone7').style.backgroundColor = "green"
     }
     if (gamedata.World.worlds.gte(gamedata.worldmilestones.break.req)) {
         gamedata.worldmilestones.break.unlocked = true
@@ -48,8 +53,9 @@ function worldmilestoneCheck() {
 function worldReset() {
     if (gamedata.trees.gte(gamedata.World.worldcap)) {
         gamedata.World.worlds = gamedata.World.worlds.add(1)
-        gamedata.World.worldcap = gamedata.World.worldcap.pow(1.25)
-          gamedata.trees = new Decimal("0")
+        gamedata.World.worldcap = gamedata.World.worldcap.pow(1.45)
+    }
+        gamedata.trees = new Decimal("0")
         gamedata.BurnerCost = new Decimal("25")
         gamedata.burnerEffect = new Decimal("1")
         gamedata.treeCutterPrice = new Decimal("5")
@@ -66,29 +72,27 @@ function worldReset() {
             chairEffect: new Decimal("1")
         }
         gamedata.flameHeat = new Decimal("0")
+        if (gamedata.worldmilestones.three.unlocked === true) {
+             treeAutomator = true
+        }
+        else {
+            gamedata.treeAutomator = false
+            gamedata.treeAutomatorPrice = new Decimal(1000)
+            gamedata.treeAutomatorEffeciency = new Decimal(1100)
+        }
         flameHeat()
         worldmilestoneCheck()
-        document.getElementById('IDd').innerHTML = gamedata.trees.toFixed(2) + " logs"
-        document.getElementById('cutterbutton').innerHTML = "Buy a cutter, cost: " + formatscientific(gamedata.treeCutterPrice) + " logs, " + " Effect: Get " + formatscientific(gamedata.treeCutters.div(10)) + " more logs per tree"
-         document.getElementById('burnerbutton').innerHTML = "Buy a burner, Cost: " + formatscientific(gamedata.BurnerCost) + " Logs, Effect: get " + formatscientific(gamedata.burnerEffect) + " times more logs"
-        document.getElementById('paperCount').innerHTML = gamedata.Paper.papers.toFixed(2) + " Papers"
-        document.getElementById('paperEffect').innerHTML = "Currently: " + gamedata.Paper.paperEffect.toFixed(2) + " x gain"
-        document.getElementById('paperCost').innerHTML = "Cost: " + gamedata.Paper.paperCost.toFixed(2) + " logs"
-        document.getElementById("chairEffect").innerHTML = "Currently: " + gamedata.Chair.chairEffect.toFixed(2) + "^ More logs"
-        document.getElementById('chairCount').innerHTML = gamedata.Chair.chairs.toFixed(2) + " Chairs"
-        document.getElementById('chairCost').innerHTML = "Cost: " + gamedata.Chair.chairCost.toFixed(2) + " logs"
-        document.getElementById('worldPageCounter').innerHTML = "You have cut all trees on " + gamedata.World.worlds.toFixed(0) + " worlds"
+        updateUI()
         document.getElementById('worldResetButton').style.display = "none"
         document.getElementById('worldcounter').style.display = "flex"
         document.getElementById('worldMilestone').style.display = "flex"
         document.getElementById('worldcounter').innerHTML = gamedata.World.worlds.toFixed(0) + " Worlds"
-    }
 }
 
-gamedata.worldmilestones = {
+originalValues.worldmilestones = {
     one: {
         name: "1 World",
-        description: "Permenantly unlock log upgrades",
+        description: "Permanently unlock log upgrades",
         req: new Decimal("1"),
         unlocked: false,
     },
@@ -99,24 +103,30 @@ gamedata.worldmilestones = {
         unlocked: false,
     },
     three: {
+        name: "3 Worlds",
+        description: "Automator doesn't reset",
+        req: new Decimal("3"),
+        unlocked: false,
+    },
+    four: {
         name: "5 Worlds",
         description: "log gain is boosted by the amount of worlds you have",
         req: new Decimal("5"),
         unlocked: false,
     },
-    four: {
+    five: {
         name: "10 Worlds",
         description: "Unlock Challenges",
         req: new Decimal("10"),
         unlocked: false,
     },
-    five: {
+    six: {
         name: "20 Worlds",
         description: "Flame Heat is boosted by the amount of Burners",
         req: new Decimal("20"),
         unlocked: false,
     },
-    six: {
+    seven: {
         name: "50 Worlds",
         description: "Unlock the last challenge",
         req: new Decimal("50"),
@@ -134,10 +144,10 @@ gamedata.worldmilestones = {
 function worldmilestone2Effect() {
             setInterval(() => {
     if (gamedata.worldmilestones.two.unlocked === true) {
-        buyCutter()
-        BuyBurner()
-        Buypaper()
-        buyChair()
+        buyMax(gamedata.trees, 1.35, gamedata.treeCutterPrice, gamedata.treeCutters, mul)
+        buymax(gamedata.trees, 1.35, gamedata.BurnerCost, gamedata.Burners, mul)
+        buymax(gamedata.trees, 1.45, gamedata.Paper.paperCost, gamedata.Paper.papers, mul)
+        buymax(gamedata.trees, 1.2, gamedata.Chair.chairCost, gamedata.Chair.chairs, pow)
         }
    }, 127);
 }

@@ -1,5 +1,3 @@
-
-
 function paperCalc() {
     let y = new Decimal("1")
     if (gamedata.logUpgrades.three.bought === true) {
@@ -24,9 +22,7 @@ function Buypaper() {
         paperCalc()
 
         gamedata.Paper.paperCost = gamedata.Paper.paperCost.mul(1.45)
-        document.getElementById('paperCount').innerHTML = gamedata.Paper.papers.toFixed(2) + " Papers"
-        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
-        document.getElementById('paperCost').innerHTML = "Cost: " + gamedata.Paper.paperCost.toFixed(2) + " logs"
+        updateUI()
     }
 }
 
@@ -56,9 +52,7 @@ function buyChair() {
         }
         chairCalc()
         chairAmountCalc()
-        gamedata.Chair.chairCost = gamedata.Chair.chairCost.pow(1.1)
-        document.getElementById('chairCount').innerHTML = gamedata.Chair.chairs.toFixed(2) + " Chairs"
-        document.getElementById('IDd').innerHTML = formatscientific(gamedata.trees) + " logs"
-        document.getElementById('chairCost').innerHTML = "Cost: " + gamedata.Chair.chairCost.toFixed(2) + " logs"
+        gamedata.Chair.chairCost = gamedata.Chair.chairCost.pow(1.2)
+        updateUI()
     }
 }
