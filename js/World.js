@@ -72,6 +72,7 @@ function worldReset() {
             chairEffect: new Decimal("1")
         }
         gamedata.flameHeat = new Decimal("0")
+        gamedata.flames = new Decimal("0")
         if (gamedata.worldmilestones.three.unlocked === true) {
              treeAutomator = true
         }
@@ -83,6 +84,7 @@ function worldReset() {
         flameHeat()
         worldmilestoneCheck()
         updateUI()
+        actualTreeCalc()
         document.getElementById('worldResetButton').style.display = "none"
         document.getElementById('worldcounter').style.display = "flex"
         document.getElementById('worldMilestone').style.display = "flex"
@@ -98,7 +100,7 @@ originalValues.worldmilestones = {
     },
     two: {
         name: "2 Worlds",
-        description: "Buy cutters, burners, papers aswell as chairs automatically",
+        description: "Buy cutters and burners automatically",
         req: new Decimal("2"),
         unlocked: false,
     },
@@ -144,10 +146,8 @@ originalValues.worldmilestones = {
 function worldmilestone2Effect() {
             setInterval(() => {
     if (gamedata.worldmilestones.two.unlocked === true) {
-        buyMax(gamedata.trees, 1.35, gamedata.treeCutterPrice, gamedata.treeCutters, mul)
-        buymax(gamedata.trees, 1.35, gamedata.BurnerCost, gamedata.Burners, mul)
-        buymax(gamedata.trees, 1.45, gamedata.Paper.paperCost, gamedata.Paper.papers, mul)
-        buymax(gamedata.trees, 1.2, gamedata.Chair.chairCost, gamedata.Chair.chairs, pow)
+        buymax(gamedata, 1.35, 'treeCutterPrice', 'treeCutters', 'mul', 'trees')
+        buymax(gamedata, 1.35, 'BurnerCost', 'Burners', 'mul', 'trees')
         }
    }, 127);
 }

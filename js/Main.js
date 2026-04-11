@@ -1,8 +1,9 @@
 const originalValues = {
  trees: new Decimal("0"),
+ actualTrees: new Decimal("0"),
  treeGain:   new Decimal("0"),
  treeAutomator: false,
- treeAutomatorEffeciency: new Decimal(1100),
+ treeAutomatorEffeciency: new Decimal(101),
  treeCutters:  new Decimal("0"),
  treeAutomatorPrice:  new Decimal(1000),
  treeCutterPrice: new Decimal("2.5"),
@@ -12,8 +13,6 @@ const originalValues = {
  flames: new Decimal("0"),
  flameThreshold: new Decimal("5e6"),
  flameheat: new Decimal("0"),
- flamethrowers: new Decimal("0"),
- flamethrowerCost: new Decimal("1e12"),
  Paper: {
     papers: new Decimal("0"),
     paperEffect: new Decimal("1"),
@@ -107,7 +106,9 @@ function buymax(data, rate, price, amount, operation, currencyName) {
 function Treecut() {
     treegainCalculate()
     gamedata.trees = gamedata.trees.add(gamedata.treeGain)
+    actualTreeCalc()
     flameFormula()
+    flameHeatCalc()
     worldcheck()
     updateUI()
 }
@@ -148,7 +149,7 @@ function BuyAutomator() {
                 gamedata.trees = gamedata.trees.sub(gamedata.treeAutomatorPrice)
 
                 gamedata.treeAutomatorPrice = gamedata.treeAutomatorPrice.mul(2.5)
-                gamedata.treeAutomatorEffeciency = gamedata.treeAutomatorEffeciency / 1.1
+                gamedata.treeAutomatorEffeciency = gamedata.treeAutomatorEffeciency.div(1.01)
                 updateUI()
                    
               }
@@ -187,5 +188,10 @@ function BuyBurner() {
 
 
     }
+}
+
+function actualTreeCalc() {
+    gamedata.actualTrees = gamedata.trees.div(10)
+    updateUI()
 }
 

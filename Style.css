@@ -444,18 +444,19 @@ div.logchallenge:hover {
 }
 
 @keyframes alert {
-    0% {bottom: 0%; right: 0%;}
-    25% {bottom: 0%; left: 10%;}
-    50% {bottom: 0%; left: 25%;}
-    75% {bottom: 0%; left: 10%;}
-    100% {bottom: 0%; right: 0%;}
+    0% {bottom: 10vh; right: -50vh;}
+    25% {bottom: 10vh; right: 30vh;}
+    50% {bottom: 10vh; right: 30vh;}
+    75% {bottom: 10vh; right: 30vh;}
+    100% {bottom: 10vh; right: -50vh}
 }
 
 div.alert {
     background-color: #030303;
-    position: absolute;
+    position: fixed;
     border: 2px solid white;
     animation-name: alert;
-    animation-duration: 7s;
+    animation-duration: 4s;
+    width: 50vh;
 }
 

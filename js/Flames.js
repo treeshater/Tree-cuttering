@@ -44,13 +44,17 @@ function flameSac() {
         }
         flameHeat()
         updateUI()
+        actualTreeCalc()
         document.getElementById('flameA').style.display = "flex"
     }
 }
 
 function flameHeatCalc() {
     y = new Decimal("0.01")
-    y.mul(gamedata.flames.add(1))
+    if (gamedata.flames.gt(0)) {
+        y.mul(Decimal.log(gamedata.flames.add(1)))
+        print
+    }
     return y
 
 }
@@ -58,11 +62,10 @@ function flameHeatCalc() {
 function flameHeat() {
     setInterval(() => {
         if (gamedata.flames.gt("0")) {
-
-            flameHeatCalc()
-                gamedata.flameheat = gamedata.flameheat.add(y)
-                flametemp = gamedata.flameheat.log(2)
-                document.getElementById('flametempText').innerHTML = " Flame Temperature: " + flametemp.toFixed(2) + " K"
+        flameHeatCalc()
+        gamedata.flameheat = gamedata.flameheat.add(y)
+        flametemp = gamedata.flameheat.log(2)
+        document.getElementById('flametempText').innerHTML = " Flame Temperature: " + flametemp.toFixed(2) + " K"
         if (gamedata.logUpgrades.five.bought === true) {
             document.getElementById('flameHeatText').innerHTML = " The temperature of the flames are multiplying log gain by " + ((gamedata.flameheat.mul(4)).pow(1.35)).toFixed(2) + "x"
         }

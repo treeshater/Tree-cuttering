@@ -1,4 +1,4 @@
- originalValues.logUpgrades = {
+originalValues.logUpgrades = {
     one: {
         name: "Burn it all",
         description: "Burner multiplier is 1.2x instead of 1.15x",
@@ -42,14 +42,14 @@
         bought: false
     },
     eight: {
-        name: "Reality bending",
+        name: "Matter bending",
         description: "Unlock the black hole",
         cost: new Decimal("e45800"),
         bought: false
     },
     nine: {
-        name: "The final challenge?",
-        description: "Unlock the last log challenge",
+        name: "placeholder",
+        description: "placeholder",
         cost: new Decimal("ee390"),
         bought: false
     },

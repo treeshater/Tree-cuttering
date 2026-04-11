@@ -1,16 +1,7 @@
-const pause = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 async function save() {
    localStorage.setItem("gamedatakey", btoa(JSON.stringify(gamedata)))
-   const UIelement = document.createElement('div')
-   UIelement.classList.add('alert')
-   UIelement.textContent = "Saved"
-   UIelement.style.webkitTextFillColor = 'White'
-   UIelement.style.fontSize = '25px'
-   UIelement.style.textAlign = 'center'
-   document.body.append(UIelement)
-   await pause(7000)
-   UIelement.remove()
+   createAlert('Saved', 'White', 'Black')
 }
 
 function exportsaveclipboard() {
@@ -87,6 +78,7 @@ gamedata = decimalload(gamedatastring);
         paperCalc()
         worldcheck()
         worldmilestoneCheck()
+        actualTreeCalc()
         if (gamedata.treeAutomator === true) {
             check()
         }

@@ -1,3 +1,4 @@
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 function popup(id) {
     document.getElementById(id).style.display = "flex"
@@ -6,6 +7,19 @@ function popup(id) {
 
 function popupclose(id) {
     document.getElementById(id).style.display = "none"
+}
+
+async function createAlert(text, color, bgcolor) {
+   const UIelement = document.createElement('div')
+   UIelement.classList.add('alert')
+   UIelement.textContent = text
+   UIelement.style.webkitTextFillColor = color
+   UIelement.style.backgroundColor = bgcolor
+   UIelement.style.fontSize = '25px'
+   UIelement.style.textAlign = 'center'
+   document.body.append(UIelement)
+   await pause(4000)
+   UIelement.remove()
 }
 
 function updateUI() {
@@ -28,6 +42,7 @@ function updateUI() {
         document.getElementById('chairCost').innerHTML = "Cost: " + formatscientific(gamedata.Chair.chairCost) + " logs"
         document.getElementById('worldPageCounter').innerHTML = "You have cut all trees on " + gamedata.World.worlds.toFixed(0) + " worlds"
         document.getElementById('worldcounter').innerHTML = gamedata.World.worlds.toFixed(0) + " Worlds"
+        document.getElementById('treecounter').innerHTML = "You have cut down " + formatscientific(gamedata.actualTrees) + " trees on your journey"
 }
 
 function formatscientific(num) {

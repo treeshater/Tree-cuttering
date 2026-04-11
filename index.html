@@ -25,8 +25,8 @@
    <div class="Resource">   
       <p class="Counters" id="IDd">0 log</p>
       <p class="PrestigeFlame" id="flamesCounter">0 flames</p>
-      <p class="worldCounter" id="worldcounter"> 0 Worlds</p>
-      <p class="solarCounter" id="solarcounter"> 0 Solar energy </p>
+      <p class="worldCounter" id="worldcounter" style="text-align: right;"> 0 Worlds</p>
+      <p class="solarCounter" id="solarcounter"> 0W Solar energy </p>
    </div>
 
    <div class="tabs">     
@@ -38,12 +38,12 @@
       <li> <a href="#settings">Settings</a> </li>
       </ul>
       <div class="subtabs">
-         <ul id="Mainsubpages">
-            <li><a href="#LogUpgrades" id="Logupgrades" style="display: none; align-self: center;"> Log upgrades </a></li>
-            <li><a href="#LogChallenges" style="display: none;" id="LogChallengestab"> Log Challenges </a></li>
+         <ul id="Mainsubpages" style="right: 50vh; position: relative;">
+            <li><a href="#LogUpgrades" id="Logupgrades" style="display: none; align-items: center;"> Log upgrades </a></li>
+            <li><a href="#LogChallenges" style="display: none; align-items: center;" id="LogChallengestab"> Log Challenges </a></li>
          </ul>
-         <ul style="display: none;" id="Worldsubpages">
-            <li><a href="#worldmilestones" id="worldMilestone"  style="color: green; display: none;"> World Milestones</a></li>
+         <ul style="display: flex; right: 50vh; position: relative;" id="Worldsubpages">
+            <li><a href="#worldmilestones" id="worldMilestone"  style="color: green; display: none; align-items: center;"> World Milestones</a></li>
          </ul>
       </div>
    </div>
@@ -121,7 +121,7 @@
             <p style="text-align: center;"> Cost: 1.79e308 logs </p> 
          </div>
          <div class="logUpgrades" id="logupgrade8" style="display: none;">          
-            <p style="text-align: center;"> #8: Reality bending </p> 
+            <p style="text-align: center;"> #8: Black holes </p> 
             <p style="font-size: 17px; text-align: center;"> Unlock the black hole </p>  
             <p style="text-align: center;"> Cost: 1e45800 logs </p> 
          </div>
@@ -170,18 +170,13 @@
             <p class="bigRedEffect" id="flametempText"> Flame Temperature: 100 K </p>
             <p class="bigGreenEffect" id="flameHeatText"> The temperature of the flames are affecting log gain by 0.00x</p>
          </div>
-         <div>
-            <p> 0 Flamethrowers </p>
-            <button class="PrestigeFlame" onclick=""> Cost: 0 </button>
-            <p> Generate flames </p>
-         </div>
       </div>
 
       <div class="World" id="world" style="display: none;">
          <div class="center">
             <p class="smallText"> Your determination to cut all the trees is astonishing honestly.... </p>
             <p class="bigGreenEffect" id="worldPageCounter"> You have cut all trees on 0 planets. </p>
-            <button class="bigbutton" id="worldResetButton" onclick="worldReset()"> Reset the world </button>
+            <button class="bigbutton" style="display: none;" id="worldResetButton" onclick="worldReset()"> Reset the world </button>
             <button onclick="worldReset()"> Reset the world anyway </button>
          </div>
 
@@ -207,7 +202,7 @@
             </div>
             <div class="worldmilestone" id="Worldmilestone5">
                <p style="text-align: center;"> 10 Worlds </p>
-               <p style="text-align: center;"> Unlock challenges </p>
+               <p style="text-align: center;"> Unlock log challenges </p>
             </div>
             <div class="worldmilestone" id="Worldmilestone6">
                <p style="text-align: center;"> 20 Worlds </p>
@@ -215,7 +210,7 @@
             </div>
             <div class="worldmilestone" id="Worldmilestone7">
                <p style="text-align: center;"> 50 Worlds </p>
-               <p style="text-align: center;"> Unlock the last challenge </p>
+               <p style="text-align: center;"> Unlock flame challenges </p>
 
             </div>
             <div class="worldmilestone" id="Worldmilestonebreak">
@@ -238,6 +233,7 @@
          <button class="settings" onclick="exportsaveclipboard()">Export to clipboard</button>
          <button class="settings" id="fileexportbutton" onclick="exportsavetofile()"> Export as file </button>
          <button class="settings" onclick="popup('inputsave')"> Import file </button>
+         <p id="treecounter" style="text-align: right;"> You have cut down 0 trees </p>
       </div>
    </div>
 
